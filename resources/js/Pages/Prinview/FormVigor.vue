@@ -1,5 +1,6 @@
 <template>
-<div><h4>Form group 4</h4>
+  <div>
+    <h4>Form group 4</h4>
 <!-- <div>{{getbilltests}}</div> -->
     <div class="relative" id="printMe" ref="printMe">
       <div class="bodyview">
@@ -59,154 +60,156 @@
             </div>
         </div>
         <div>
-              <div class="text-center font-bold text-2xl font-sans-Timenew mt-2 text-red-600">KẾT QUẢ TẾ BÀO HỌC CỔ TỬ CUNG THEO HỆ THỐNG BETHESDA 2014</div>
+          <div class="text-center font-bold text-2xl font-sans-Timenew mt-2 text-red-600">KẾT QUẢ TẾ BÀO HỌC CỔ TỬ CUNG THEO HỆ THỐNG BETHESDA 2014</div>
+          <div class="grid grid-cols-5 font-sans-Timenew leading-6 fontsizeInfo">
+            <div class="font-bold italic col-span-2">Đánh giá lam (Specimen evalueation)</div>
+              <div class="col-span-3 grid grid-cols-2" >
 
-              <div class="grid grid-cols-5 font-sans-Timenew leading-6 fontsizeInfo">
-                <div class="font-bold italic col-span-2">Đánh giá lam (Specimen evalueation)</div>
-                  <div class="col-span-3 grid grid-cols-2" >
+                  <div class="" v-for="eg1 in testElements" :key="eg1.id">
+                  <div class="font-bold flex" v-if="eg1.element_group ==1">{{eg1.name}}
 
-                     <div class="" v-for="eg1 in testElements" :key="eg1.id">
-                      <div class="font-bold flex" v-if="eg1.element_group ==1">{{eg1.name}}
-
-                        <span>
-                          <input type="checkbox" checked  class="ml-1 my-2 form-checkbox h-4 w-4" :value="eg1.id" v-model="selectedArray"/>
-                        </span>
-                      </div>
-                    </div>
-            </div>
-              </div>
-               <div class="grid grid-cols-1 font-sans-Timenew fontsizeInfo">
-                    <div class="text-xl" v-for="eg2 in testElements" :key="eg2.id">
-                       <div class="font-bold flex text-blue-900" v-if="eg2.element_group ==2"> - {{eg2.name}}
-
-                        <span>
-                           <input type="checkbox" disabled class="form-checkbox text-blue-800 h-4 w-4" :value="eg2.id" v-model="selectedArray"/>
-                        </span>
-
-                      </div>
-                    </div>
-                </div>
-            <div class="flex flex-cols-5 fontsizeInfo">
-                <div class="" v-for="eg3 in testElements" :key="eg3.id">
-                    <span class="text-left font-bold text-sm  font-sans-Timenew mr-5 " v-if="eg3.element_group == 3">+ {{eg3.name}}
-                            <input type="checkbox" disabled  class="ml-1 my-2 form-checkbox text-blue-800 h-3 w-3" :value="eg3.id" v-model="selectedArray"/>
+                    <span>
+                      <input type="checkbox" checked  class="ml-1 my-2 form-checkbox h-4 w-4" :value="eg1.id" v-model="selectedArray"/>
                     </span>
+                  </div>
                 </div>
-            </div>
-             <div class="grid grid-cols-1">
-                <div class="" v-for="eg4 in testElements" :key="eg4.id">
-                    <span class="text-left font-bold text-lg  font-sans-Timenew text-blue-900" v-if="eg4.element_group == 4">- {{eg4.name}}
-                   <input type="checkbox" class="ml-1 my-2 form-checkbox text-blue-800 h-4 w-4" :value="eg4.id" v-model="selectedArray"/>
+        </div>
+          </div>
+            <div class="grid grid-cols-1 font-sans-Timenew fontsizeInfo">
+                <div class="text-xl" v-for="eg2 in testElements" :key="eg2.id">
+                    <div class="font-bold flex text-blue-900" v-if="eg2.element_group ==2"> - {{eg2.name}}
+
+                    <span>
+                        <input type="checkbox" disabled class="form-checkbox text-blue-800 h-4 w-4" :value="eg2.id" v-model="selectedArray"/>
                     </span>
+
+                  </div>
                 </div>
             </div>
-
-              <div class="col-span-2">
-                    <span class=" font-sans-Timenew font-bold text-xl  text-blue-700">TẾ BÀO GAI (Squamuos cell)</span>
-                    <div class="grid grid-cols-2 leading-4 italic fontsizeElement">
-                      <div class="flex flex-col">
-                         <div v-for="(eg5, i) in testElements" :key="i">
-                            <span class="ml-2 text-left font-bold text-sm  font-sans-Timenew " v-if="eg5.element_group == 5"> {{eg5.name}}
-                              <input type="checkbox" class="ml-1 my-2 form-checkbox text-blue-800 h-4 w-4" :value="eg5.id" v-model="selectedArray"/>
+          <div class="flex flex-cols-5 fontsizeInfo">
+              <div class="" v-for="eg3 in testElements" :key="eg3.id">
+                  <span class="text-left font-bold text-sm  font-sans-Timenew mr-5 " v-if="eg3.element_group == 3">+ {{eg3.name}}
+                          <input type="checkbox" disabled  class="ml-1 my-2 form-checkbox text-blue-800 h-3 w-3" :value="eg3.id" v-model="selectedArray"/>
+                  </span>
+              </div>
+          </div>
+            <div class="grid grid-cols-1">
+              <div class="" v-for="eg4 in testElements" :key="eg4.id">
+                  <span class="text-left font-bold text-lg  font-sans-Timenew text-blue-900" v-if="eg4.element_group == 4">- {{eg4.name}}
+                  <input type="checkbox" class="ml-1 my-2 form-checkbox text-blue-800 h-4 w-4" :value="eg4.id" v-model="selectedArray"/>
+                  </span>
+              </div>
+          </div>
+          <div class="col-span-2">
+                <span class=" font-sans-Timenew font-bold text-xl  text-blue-700">TẾ BÀO GAI (Squamuos cell)</span>
+                <div class="grid grid-cols-2 leading-4 italic fontsizeElement">
+                  <div class="flex flex-col">
+                      <div v-for="(eg5, i) in testElements" :key="i">
+                        <span class="ml-2 text-left font-bold text-sm  font-sans-Timenew " v-if="eg5.element_group == 5"> {{eg5.name}}
+                          <input type="checkbox" class="ml-1 my-2 form-checkbox text-blue-800 h-4 w-4" :value="eg5.id" v-model="selectedArray"/>
+                    </span>
+              </div>
+                  </div>
+                  <div class="flex flex-col">
+                    <div class="" v-for="(eg6, i) in testElements" :key="i">
+                      <span class="pl-2 text-left font-bold text-sm  font-sans-Timenew " v-if="eg6.element_group == 6">{{eg6.name}}
+                              <input type="checkbox" class="ml-1 my-2 form-checkbox text-blue-800 h-4 w-4" :value="eg6.id" v-model="selectedArray"/>
                         </span>
-                  </div>
-                      </div>
-                      <div class="flex flex-col">
-                        <div class="" v-for="(eg6, i) in testElements" :key="i">
-                          <span class="pl-2 text-left font-bold text-sm  font-sans-Timenew " v-if="eg6.element_group == 6">{{eg6.name}}
-                                 <input type="checkbox" class="ml-1 my-2 form-checkbox text-blue-800 h-4 w-4" :value="eg6.id" v-model="selectedArray"/>
-                            </span>
-                        </div>
-                      </div>
-
                     </div>
+                  </div>
+
                 </div>
-
-              <div class="grid grid-cols-1 mt-2">
-                  <div>
-                    <span class=" font-sans-Timenew font-bold text-xl uppercase text-blue-700">Tế bào Tuyến</span>
-                    <div class="flex flex-row leading-5 fontsizeElement">
-                       <div v-for="eg7 in testElements" :key="eg7.id">
-                         <div v-if="eg7.element_group == 7">
-                          <span class="text-left font-bold text-sm ml-4 mr-6  font-sans-Timenew" >{{eg7.name}}
-                               <input type="checkbox" class="ml-1 my-2 form-checkbox text-blue-800 h-4 w-4" :value="eg7.id" v-model="selectedArray"/>
-                            </span>
-                          </div>
-                  </div>
-                    </div>
-                  </div>
+            </div>
+          <div class="grid grid-cols-1 mt-2">
+              <div>
+                <span class=" font-sans-Timenew font-bold text-xl uppercase text-blue-700">Tế bào Tuyến</span>
+                <div class="flex flex-row leading-5 fontsizeElement">
+                    <div v-for="eg7 in testElements" :key="eg7.id">
+                      <div v-if="eg7.element_group == 7">
+                      <span class="text-left font-bold text-sm ml-4 mr-6  font-sans-Timenew" >{{eg7.name}}
+                            <input type="checkbox" class="ml-1 my-2 form-checkbox text-blue-800 h-4 w-4" :value="eg7.id" v-model="selectedArray"/>
+                        </span>
+                      </div>
               </div>
-              <div class="grid grid-cols-4 font-sans-Timenew leading-6 italic mt-2">
-                <div class="font-bold m-0 p-0 text-xl">Đề nghị (Suggestions):</div>
-                <div class="font-bold col-span-3">
-                  <div class="flex">
-                   <div  v-for="eg8 in testElements" :key="eg8.id">
-                      <span class="font-bold text-sm w-full mr-3" v-if="eg8.element_group ==8 && eg8.element_group !==null ">{{eg8.name}}
-                             <input type="checkbox" class="ml-1 my-2 form-checkbox text-blue-800 h-4 w-3" :value="eg8.id" v-model="selectedArray"/>
-                      </span>
-                    </div>
-                    </div>
                 </div>
               </div>
-                <div class="grid grid-cols-2 mt-2 text-center">
-                                <div  class="text-center flex justify-center">
-                                   <img v-if="getbilltests['thinprep_code']"
-                                      class="w-96 max-h-64 "
-                                      :src="pathThinLeft+imageThinLeft"
-                                      :alt="imageThinLeft"/>
+          </div>
+          <div class="grid grid-cols-4 font-sans-Timenew leading-6 italic mt-2">
+            <div class="font-bold m-0 p-0 text-xl">Đề nghị (Suggestions):</div>
+            <div class="font-bold col-span-3">
+              <div class="flex">
+                <div  v-for="eg8 in testElements" :key="eg8.id">
+                  <span class="font-bold text-sm w-full mr-3" v-if="eg8.element_group ==8 && eg8.element_group !==null ">{{eg8.name}}
+                          <input type="checkbox" class="ml-1 my-2 form-checkbox text-blue-800 h-4 w-3" :value="eg8.id" v-model="selectedArray"/>
+                  </span>
+                </div>
+                </div>
+            </div>
+          </div>
+            <div class="grid grid-cols-2 mt-2 text-center">
+                            <div  class="text-center flex justify-center">
+                                <img v-if="getbilltests['thinprep_code']"
+                                  class="w-96 max-h-64 "
+                                  :src="pathThinLeft+imageThinLeft"
+                                  :alt="imageThinLeft"/>
 
-                                   <img v-else
-                                      class="w-80 max-h-56 "
-                                      :src="pathImageLeft"
-                                      alt="imageThinLeft"/>
-                                  </div>
-                                <div class="text-center flex justify-center">
-                                  <img  v-if="getbilltests['thinprep_code']"
-                                      class="w-96 max-h-64 "
-                                      :src="pathThinRight+imageThinRight"
-                                      :alt="LogoThin"/>
-                                  <img v-else
-                                      class="w-80 max-h-56 "
-                                      :src="pathImageLeft"
-                                      alt="imageThinLeft"/>
-                                </div>
-                  </div>
-              <div class="grid grid-cols-3">
-                <div class="col-span-2">
-                  <div class="grid grid-cols-1">
-                      <span class="font-bold text-red-800 font-sans-Timenew text-xl underline underline-offset-2">KẾT LUẬN (Conclution):</span>
-                        <div  v-for="eg9 in testElements" :key="eg9.id" class="text-lg">
-                            <div class="font-bold  w-full mr-3" v-if="eg9.element_group ==9 && eg9.element_group !==null ">
-                              <span v-if="ketluan" class="uppercase text-red-800 font-sans-Timenew pl-2" >- {{ketluan}}</span>
-                              <span v-else  >
-                                 <span class="uppercase text-red-800 font-sans-Timenew  pl-2">- KHÔNG TỔN THƯƠNG TRONG BIỂU MÔ HAY UNG THƯ</span>
-                                  <p class="font-sans-Timenew  ml-2">-Tế bào cổ tử cung biến đổi do viêm</p>
-                              </span>
+                                <img v-else
+                                  class="w-80 max-h-56 "
+                                  :src="pathImageLeft"
+                                  alt="imageThinLeft"/>
+                              </div>
+                            <div class="text-center flex justify-center">
+                              <img  v-if="getbilltests['thinprep_code']"
+                                  class="w-96 max-h-64 "
+                                  :src="pathThinRight+imageThinRight"
+                                  :alt="LogoThin"/>
+                              <img v-else
+                                  class="w-80 max-h-56 "
+                                  :src="pathImageLeft"
+                                  alt="imageThinLeft"/>
                             </div>
-                        </div>
-                  </div>
-                </div>
-                <div class="grid grid-cols-1 text-center text-xl">
-                  <span class="font-bold font-sans-Timenew ">Ngày đọc kết quả: {{currentDate}}</span>
-                  <span class="mb-28 font-bold font-sans-Timenew ">BS/KTV đọc kết quả:</span>
-                  <span class="font-bold font-sans-Timenew "  v-if="doctorread && getbilltests['asign_view']!=1">{{doctorread.title }} <span class="uppercase">{{doctorread.name}}</span></span>
-                  <span class="font-bold font-sans-Timenew ">KHOA GIẢI PHẨU BỆNH</span>
-                  <span class="font-bold font-sans-Timenew ">BỆNH VIỆN TỪ DŨ</span>
-                </div>
               </div>
+          <div class="flex justify-between">
+            <div class="flex flex-col">
+              <span class="font-bold text-red-800 font-sans-Timenew text-xl underline underline-offset-2">KẾT LUẬN (Conclution):</span>
+              <div  v-for="eg9 in testElements" :key="eg9.id" class="text-lg">
+                  <div class="font-bold  w-full mr-3" v-if="eg9.element_group ==9 && eg9.element_group !==null ">
+                    <span v-if="ketluan" class="uppercase text-red-800 font-sans-Timenew pl-2" >- {{ketluan}}</span>
+                    <span v-else  >
+                        <span class="uppercase text-red-800 font-sans-Timenew  pl-2">- KHÔNG TỔN THƯƠNG TRONG BIỂU MÔ HAY UNG THƯ</span>
+                        <p class="font-sans-Timenew  ml-2">-Tế bào cổ tử cung biến đổi do viêm</p>
+                    </span>
+                  </div>
+              </div>
+            </div>
+            <div class="flex flex-col text-center text-xl mb-52">
+              <span class="font-bold font-sans-Timenew ">Ngày đọc kết quả: {{currentDate}}</span>
+              <span class=" font-bold font-sans-Timenew ">BS/KTV đọc kết quả:</span>
+               <div v-if="getbilltests['asign_view']" ></div>
+              <div v-else>
+                <span class="py-2 flex justify-end" v-if="printOutsent.asign_view">
+                  <img class="h-14" :src="path_asign +doctorread.asign"/>
+                </span>
+                <span class="py-10" v-else></span>
+                <span class="font-bold font-sans-Timenew ">{{doctorread.title }}<span class="ml-2">{{doctorread.name}}</span></span>
+              </div>
+              <span class="font-bold font-sans-Timenew ">KHOA GIẢI PHẨU BỆNH</span>
+              <span class="font-bold font-sans-Timenew">BỆNH VIỆN TỪ DŨ</span>
+            </div>
+          </div>
         </div>
       </div>
       </div>
        <div class=" flex justify-center py-0 footer" >
          <img
-              class="max-h-18 w-full"
-              :src="pathImageFooter"
-              :alt="LogoThin"
-            />
+          class="max-h-18 w-full"
+          :src="pathImageFooter"
+          :alt="LogoThin"
+          />
         </div>
     </div>
     <div class="page-break"></div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -235,7 +238,8 @@ export default {
         pathLogo:'',
         imagePathBackground:'',
         pathLogoEuro:'',
-        eurolab:''
+        eurolab:'',
+        path_asign:'',
     },
     components:{
       BeakerIcon,

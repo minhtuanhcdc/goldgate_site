@@ -5,366 +5,352 @@
     </template>
     <Container>
       <Card>
-        <div class="text-right text-red-600" v-if="errors">
-          <p v-for="(er, i) in errors" :key="i">
-            {{ er }}
-          </p>
-        </div>
-        <div class="grid grid-cols-1 mb-2">
-          <div class="flex flex-1 justify-between">
-            <div class="flex flex-row">
-              <!-- <a
-                :href="route('downloadPDF', checkPrint)"
-                class="
-                  bg-green-800
-                  py-1
-                  px-2
-                  rounded-md
-                  text-white
-                  cursor-pointer
-                  h-8
-                "
-                target="blank"
-                >Export PDF
-                <span class="text-xs m-0"
-                  >({{ checkPrint ? checkPrint.length : 0 }})</span
-                ></a
-              > -->
-              <!-- <button @click="multiPrint(checkPrint)"  class="ml-2 bg-green-600 px-2 py-0 rounded-md float-right cursor-pointer h-8 text-white">Print Multi<span class="text-xs ml-1">({{checkPrint?checkPrint.length:0}})</span></button> -->
-              <a
-                :href="route('printMutiThin', checkPrint)"
-                class="
-                  ml-4
-                  bg-blue-800
-                  py-1
-                  px-2
-                  rounded-md
-                  text-white
-                  cursor-pointer
-                  h-8
-                "
-                target="blank"
-                >PrintMulti
-                <span class="text-xs m-0"
-                  >({{ checkPrint ? checkPrint.length : 0 }})</span
-                ></a
-              >
-            </div>
-            <div class="flex flex-row w-56 px-4 text-center">
-              <a :href="route('exportDsThin',{'startDate':startDate,'endDate':endDate,'ousentFill':ousentFill,'nametestFill':nametestFill})"
-               class="py-2 flex flex-row justify-center bg-green-500 text-white w-full rounded-md mr-2" >
-                <span class="w-full">Export DS trả KQ </span>
-              </a>
-            </div>
+        <div>
+          <div class="text-right text-red-600" v-if="errors">
+            <p v-for="(er, i) in errors" :key="i">
+              {{ er }}
+            </p>
           </div>
-
-        </div>
-        <!---/////==================------->
-        <!---==================------->
-        <hr class="mb-2" />
-        <div class="flex justify-between">
-          <div class="">
-            <div class="flex flex-row">
-              <div class="">
-                <span>ĐV gửi mẫu:</span>
-              </div>
-              <div class=" w-52">
-                <select
-                  name="testgroup"
-                  id="testgroup"
-                  class="block py-0 w-full form-input h-8 rounded-lg text-md bg-green-300"
-                  v-model="ousentFill"
-                >
-                  <option value="">All</option>
-                  <option v-for="(ous, i) in ousents" :key="i" :value="ous.id">
-                    {{ ous.id }} - {{ ous.name }}
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class=" mx-2">
-            <div class="flex flex-grow">
-              <div class="">
-                <span>BS đọc KQ(ĐV đọc KQ):</span>
-              </div>
-              <div class=" w-52">
-                <select
-                  name="testgroup"
-                  id="testgroup"
-                  class="block py-0 w-full form-input h-8 rounded-lg text-md"
-                  v-model="readcodeFill"
-                >
-                  <option value="">All</option>
-                  <option
-                    v-for="(rcd, i) in readcodes"
-                    :key="i"
-                    :value="rcd.read_code"
-                  >
-                    {{ rcd.name }} ({{ rcd.read_code }})
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="">
-            <div class="flex flex-row">
+          <div class="grid grid-cols-1 mb-2">
+            <div class="flex flex-1 justify-between">
               <div class="flex flex-row">
-                <span>Từ:</span>
-
+                <a
+                  :href="route('printMutiThin', checkPrint)"
+                  class="
+                    ml-4
+                    bg-blue-800
+                    py-1
+                    px-2
+                    rounded-md
+                    text-white
+                    cursor-pointer
+                    h-8
+                  "
+                  target="blank"
+                  >PrintMulti
+                  <span class="text-xs m-0"
+                    >({{ checkPrint ? checkPrint.length : 0 }})</span
+                  ></a
+                >
+              </div>
+              <div class="flex flex-row w-56 px-4 text-center">
+                <a :href="route('exportDsThin',{'startDate':startDate,'endDate':endDate,'ousentFill':ousentFill,'nametestFill':nametestFill})"
+                class="py-2 flex flex-row justify-center bg-green-500 text-white w-full rounded-md mr-2" >
+                  <span class="w-full">Export DS trả KQ </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!---/////==================------->
+          <!---==================------->
+          <hr class="mb-2" />
+          <div class="flex justify-between">
+            <div class="">
+              <div class="flex flex-row">
+                <div class="">
+                  <span>ĐV gửi mẫu:</span>
+                </div>
+                <div class=" w-52">
+                  <select
+                    name="testgroup"
+                    id="testgroup"
+                    class="block py-0 w-full form-input h-8 rounded-lg text-md bg-green-300"
+                    v-model="ousentFill"
+                  >
+                    <option value="">All</option>
+                    <option v-for="(ous, i) in ousents" :key="i" :value="ous.id">
+                      {{ ous.id }} - {{ ous.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class=" mx-2">
+              <div class="flex flex-grow">
+                <div class="">
+                  <span>BS đọc KQ(ĐV đọc KQ):</span>
+                </div>
+                <div class=" w-52">
+                  <select
+                    name="testgroup"
+                    id="testgroup"
+                    class="block py-0 w-full form-input h-8 rounded-lg text-md"
+                    v-model="readcodeFill"
+                  >
+                    <option value="">All</option>
+                    <option
+                      v-for="(rcd, i) in readcodes"
+                      :key="i"
+                      :value="rcd.read_code"
+                    >
+                      {{ rcd.name }} ({{ rcd.read_code }})
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <div class="flex flex-row">
                 <div class="flex flex-row">
+                  <span>Từ:</span>
+
+                  <div class="flex flex-row">
+                    <jet-input
+                      id="startDate"
+                      type="date"
+                      class="h-8 block w-full bg-green-300"
+                      v-model="startDate"
+                      autocomplete="startDate"
+                    />
+                  </div>
+                </div>
+                <div class="flex flex-row ml-2">
+                  <span>Đến:</span>
+
                   <jet-input
-                    id="startDate"
+                    id="endDate"
                     type="date"
                     class="h-8 block w-full bg-green-300"
-                    v-model="startDate"
-                    autocomplete="startDate"
+                    v-model="endDate"
+                    autocomplete="endDate"
                   />
                 </div>
               </div>
-              <div class="flex flex-row ml-2">
-                <span>Đến:</span>
-
-                <jet-input
-                  id="endDate"
-                  type="date"
-                  class="h-8 block w-full bg-green-300"
-                  v-model="endDate"
-                  autocomplete="endDate"
-                />
-              </div>
+            </div>
+            <div class=" text-right">
+              <button
+                @click="getPageFill"
+                class="
+                  px-4
+                  ml-2
+                  py-2
+                  justify-auto
+                  text-white
+                  font-bold
+                  bg-blue-400
+                  rounded-md
+                  text-sm
+                  h-8
+                "
+              >
+                Fill
+              </button>
+              <button
+                @click="refreshFill"
+                class="
+                  px-2
+                  mx-2
+                  py-2
+                  justify-auto
+                  text-white
+                  font-bold
+                  bg-yellow-400
+                  rounded-md
+                  text-sm
+                  h-8
+                "
+              >
+                Refresh
+              </button>
             </div>
           </div>
-
-          <div class=" text-right">
-            <button
-              @click="getPageFill"
-              class="
-                px-4
-                ml-2
-                py-2
-                justify-auto
-                text-white
-                font-bold
-                bg-blue-400
-                rounded-md
-                text-sm
-                h-8
-              "
-            >
-              Fill
-            </button>
-            <button
-              @click="refreshFill"
-              class="
-                px-2
-                mx-2
-                py-2
-                justify-auto
-                text-white
-                font-bold
-                bg-yellow-400
-                rounded-md
-                text-sm
-                h-8
-              "
-            >
-              Refresh
-            </button>
-          </div>
-        </div>
-        <hr class="mt-2" />
-        <!---==================------->
-        <div class="flex justify-between mt-2 my-1">
-          <div class="bg-blue-100">
-            <div class="text-right">
-              <div class="flex mb-2 text-right h-8 px-2">
-                <jet-input
-                  required
-                  id="search"
-                  type="text"
-                  class="mt-1 block w-full h-8 mr-2"
-                  autocomplete="search"
-                  v-model="termSearch"
-                  @keyup="search"
-                />
-                <span
-                  class="
-                    justify-center justify-items-center
-                    mt-2
-                    cursor-pointer
-                  "
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
+          <hr class="mt-2" />
+          <!---==================------->
+          <div class="flex justify-between mt-2 my-1">
+            <div class="bg-blue-100">
+              <div class="text-right">
+                <div class="flex mb-2 text-right h-8 px-2">
+                  <jet-input
+                    required
+                    id="search"
+                    type="text"
+                    class="mt-1 block w-full h-8 mr-2"
+                    autocomplete="search"
+                    v-model="termSearch"
+                    @keyup="search"
+                  />
+                  <span
+                    class="
+                      justify-center justify-items-center
+                      mt-2
+                      cursor-pointer
+                    "
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="">
-            <div class="p-0 text-right rounded-sm">
-              <div class="flex flex-row justify-end">
-                <jet-label
-                  class="text-right text-bold text-lg pr-1"
-                  for="testgroup"
-                  value="perPage:"
-                />
-                <select
-                  name="perPage"
-                  id="perPage"
-                  class="block py-0 w-24 form-input h-8 rounded-lg"
-                  v-model="perPage"
-                  @change="getfilePerpage"
-                >
-                  <option value="1">1</option>
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                  <option value="20">20</option>
-                  <option value="30">30</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                  <option value="150">150</option>
-                  <option value="200">200</option>
-                  <option value="250">250</option>
-                </select>
+            <div class="">
+              <div class="p-0 text-right rounded-sm">
+                <div class="flex flex-row justify-end">
+                  <jet-label
+                    class="text-right text-bold text-lg pr-1"
+                    for="testgroup"
+                    value="perPage:"
+                  />
+                  <select
+                    name="perPage"
+                    id="perPage"
+                    class="block py-0 w-24 form-input h-8 rounded-lg"
+                    v-model="perPage"
+                    @change="getfilePerpage"
+                  >
+                    <option value="1">1</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="150">150</option>
+                    <option value="200">200</option>
+                    <option value="250">250</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <!---//////////==================------->
-        <Table :headers="headers" :addClass="addClass" id="exportMe">
-          <tr>
-            <td class="text-sm font-bold" colspan="2">
-              <input
-                class="mr-2"
-                type="checkbox"
-                v-model="allSelected"
-                @click="checkAll"
-              />CheckAll
-            </td>
-          </tr>
-          <tr
-            class="hover:bg-gray-300"
-            v-for="(bill, i) in billtests.data"
-            :key="i"
-          >
-            <td>
-              <input type="checkbox" :value="bill.id" v-model="checkPrint" />
-            </td>
-            <td class="border-r-2 text-center">{{ bill.id }}</td>
-            <td class="border-r-2 text-center font-bold">{{ bill.thinprep_code }}</td>
-            <td class="border-r-2">{{ bill.custommer.name }}</td>
-            <td class="border-r-2">
-              <span v-if="bill.custommer.gender == 0">Nữ</span>
-              <span v-else>Nam</span>
-            </td>
-            <td class="border-r-2">{{ bill.custommer.birthday }}</td>
-            <td class="border-r-2 text-center">
-              <span v-if="bill.custommer">{{ bill.custommer.address }}, </span>
-              <span v-if="bill.custommer.ward">{{ bill.custommer.ward.name }}, </span>
-              <span v-if="bill.custommer.district">{{bill.custommer.district.name}}, </span>
-              <span v-if="bill.custommer.province"
-                >{{ bill.custommer.province.title }}.
-                {{ bill.custommer.province.name }}</span
-              >
-            </td>
-            <td class="border-r-2 text-center" v-if="bill.phone !== null">
-              {{ bill.custommer.phone }}
-            </td>
-            <td class="border-r-2 text-center" v-else></td>
-            <td class="border-r-2 text-center">
-              <span
-                class="text-green-800"
-                v-for="(tn, i) in bill.testnames"
-                :key="i"
-              >
-                {{ tn.name }},
-              </span>
-            </td>
-
-            <td class="border-r-2">
-              <span>{{ bill.doctor_indi }}</span>
-            </td>
-            <td class="border-r-2 text-sm w-40 text-blue-700">
-              <span v-if="bill.ousent">{{ bill.ousent.name }}</span>
-            </td>
-            <td class="border-r-2 text-center">
-              <span class="text-center">
-                {{ formatDate(bill.date_receive) }}
-              </span>
-            </td>
-            <td class="border-r-2">
-              <span>{{ bill.read_code }}</span>
-            </td>
-            <td class="border-r-2">
-              <span v-if="bill.imageleft" class="flex justify-center">
-                <AppImageView
-                  :imageUrl="pathThinLeft + bill.imageleft.thinLeft"
-                />
-              </span>
-              <span v-else> - </span>
-            </td>
-            <td class="border-r-2">
-              <span v-if="bill.imageleft">
-                <AppImageView
-                  :imageUrl="pathThinRight + bill.imageleft.thinRight"
-                />
-              </span>
-              <span v-else> - </span>
-            </td>
-            <td class="border-r-2">
-              <span v-for="(rs, i) in bill.results" :key="i">
-                <span v-if="rs.element_id == 26" class="text-red-600">
-                  {{ rs.result }},
-                </span>
-              </span>
-            </td>
-
-            <td class="border-r-2">{{ bill.userupdate_id }}</td>
-            <td class="border-r-2 w-32">
-              <div class="flex items-center justify-end space-x-3">
-                <EditBtn
-                  title="Print"
-                  class="text-gray-600"
-                  @click="printResult(bill)"
+        <div>
+          <Table :headers="headers" :addClass="addClass" id="exportMe">
+            <tr>
+              <td class="text-sm font-bold" colspan="2">
+                <input
+                  class="mr-2"
+                  type="checkbox"
+                  v-model="allSelected"
+                  @click="checkAll"
+                />CheckAll
+              </td>
+            </tr>
+            <tr
+              class="hover:bg-gray-300 align-middle"
+              v-for="(bill, i) in billtests.data"
+              :key="i"
+            >
+              <td>
+                <input type="checkbox" :value="bill.id" v-model="checkPrint" />
+              </td>
+              <td class="border-r-2 text-center">{{ bill.id }}</td>
+              <td class="border-r-2 text-center font-bold">{{ bill.thinprep_code }}</td>
+              <td class="border-r-2">{{ bill.custommer.name }}</td>
+              <!-- <td class="border-r-2">
+                <span v-if="bill.custommer.gender == 0">Nữ</span>
+                <span v-else>Nam</span>
+              </td> -->
+              <td class="border-r-2">{{ bill.custommer.birthday }}</td>
+              <td class="border-r-2 text-center">
+                <span v-if="bill.custommer">{{ bill.custommer.address }}, </span>
+                <span v-if="bill.custommer.ward">{{ bill.custommer.ward.name }}, </span>
+                <span v-if="bill.custommer.district">{{bill.custommer.district.name}}, </span>
+                <span v-if="bill.custommer.province"
+                  >{{ bill.custommer.province.title }}.
+                  {{ bill.custommer.province.name }}</span
                 >
-                  <svg
-                    class="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
+              </td>
+              <td class="border-r-2 text-center" v-if="bill.phone !== null">
+                {{ bill.custommer.phone }}
+              </td>
+              <td class="border-r-2 text-center" v-else></td>
+              <td class="border-r-2 text-center">
+                <span
+                  class="text-green-800"
+                  v-for="(tn, i) in bill.testnames"
+                  :key="i"
+                >
+                  {{ tn.name }},
+                </span>
+              </td>
+
+              <td class="border-r-2">
+                <span>{{ bill.doctor_indi }}</span>
+              </td>
+              <td class="border-r-2 text-sm w-40 text-blue-700 uppercase text-center">
+                <span v-if="bill.ousent">{{ bill.ousent.name }}</span>
+              </td>
+              <td class="border-r-2 text-center">
+                <span class="text-center">
+                  {{ formatDate(bill.date_receive) }}
+                </span>
+              </td>
+              <td class="border-r-2">
+                <span>{{ bill.read_code }}</span>
+              </td>
+              <td class="border-r-2">
+                <span v-if="bill.imageleft" class="flex justify-center">
+                  <AppImageView
+                    :imageUrl="pathThinLeft + bill.imageleft.thinLeft"
+                  />
+                </span>
+                <span v-else> - </span>
+              </td>
+              <td class="border-r-2">
+                <span v-if="bill.imageleft">
+                  <AppImageView
+                    :imageUrl="pathThinRight + bill.imageleft.thinRight"
+                  />
+                </span>
+                <span v-else> - </span>
+              </td>
+              <td class="border-r-2">
+                <span v-for="(rs, i) in bill.results" :key="i">
+                  <span v-if="rs.element_id == 26" class="text-red-600">
+                    {{ rs.result }},
+                  </span>
+                </span>
+              </td>
+              <td class="border-r-2 text-center font-bold text-blue-800">
+                <span v-if="bill.asign_view == 1">v</span>
+                <span v-else></span>
+
+                </td>
+              <td class="border-r-2 w-20">
+                <div class="flex items-center justify-end space-x-3 ">
+                  <EditBtn
+                    title="Print"
+                    class="text-gray-600"
+                    @click="printResult(bill)"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
-                    />
-                  </svg>
-                </EditBtn>
-              </div>
-            </td>
-          </tr>
-        </Table>
-        <div class="mt-4">
-          <div class="flex">
-            <Pagination :links="billtests.links" />
+                    <svg
+                      class="h-8 w-8"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+                      />
+                    </svg>
+                  </EditBtn>
+                </div>
+              </td>
+            </tr>
+          </Table>
+          <div class="mt-4">
+            <div class="flex">
+              <Pagination :links="billtests.links" />
+            </div>
           </div>
         </div>
-
         <DialogModal
           :show="showModlPrint"
           class="mb-0 pb-0 bg-green-700"
@@ -426,7 +412,7 @@
                 :imagePathBackground="imagePathBackground"
                 :eurolab="eurolab"
                 :pathLogoEuro="pathLogoEuro"
-
+                :path_asign="path_asign"
               />
             </div>
             <div v-if="printOutsent.form_group == 2">
@@ -449,6 +435,7 @@
                 :imagePathBackground="imagePathBackground"
                 :pathLogoEuro="pathLogoEuro"
                 :eurolab="eurolab"
+                 :path_asign="path_asign"
               />
             </div>
             <div v-if="printOutsent.form_group == 3">
@@ -472,6 +459,7 @@
                 :imagePathBackground="imagePathBackground"
                 :eurolab="eurolab"
                 :pathLogoEuro="pathLogoEuro"
+                 :path_asign="path_asign"
               />
             </div>
             <div v-if="printOutsent.form_group == 4">
@@ -494,9 +482,9 @@
                 :imagePathBackground="imagePathBackground"
                 :pathLogoEuro="pathLogoEuro"
                 :eurolab="eurolab"
+                 :path_asign="path_asign"
               />
             </div>
-
             <div v-if="printOutsent.form_group == 5">
               <PrintviewErolab
                 :getbilltests="getbilltests"
@@ -519,6 +507,7 @@
                 :eurolab="eurolab"
                 :pathLogoEuro="pathLogoEuro"
                 :imageGGSqure="imageGGSqure"
+                 :path_asign="path_asign"
               />
             </div>
             <div v-if="printOutsent.form_group == 6">
@@ -543,6 +532,7 @@
                 :imageGGSqure="imageGGSqure"
                 :eurolab="eurolab"
                 :pathLogoEuro="pathLogoEuro"
+                 :path_asign="path_asign"
               />
             </div>
             <div v-if="printOutsent.form_group == null">
@@ -565,6 +555,7 @@
                 :doctorread="doctorread"
                 :pathLogoEuro="pathLogoEuro"
                 :eurolab="eurolab"
+                 :path_asign="path_asign"
               />
             </div>
           </template>
@@ -663,9 +654,10 @@ export default defineComponent({
   },
   data() {
     return {
+      path_asign:'/storage/Image_Ouread/',
+      pathLogo: "/storage/Image_Ousent/",
       pathLogoEuro: "/storage/Image_Eurolab/",
       pathThinLeft: "/storage/ImageThinLeft/",
-      pathLogo: "/storage/Image_Ousent/",
       pathThinRight: "/storage/ImageThinRight/",
       imagePathBackground: "/images/Logo/thinprepColor.png",
       imageGGSqure: "/images/Logo/logohpv(30_30).png",
@@ -756,14 +748,14 @@ export default defineComponent({
         { name: "Mã Thinprep", class: "border-l-2 text-center font-normal" },
         {
           name: "Tên khách hàng",
-          class: "border-l-2 text-center w-52 px-2 font-normal",
+          class: "border-l-2 text-center w-48 px-2 font-normal",
         },
-        {
-          name: "Giới tính",
-          class: "border-l-2 text-center w-8 px-2 font-normal",
-        },
+        // {
+        //   name: "Giới tính",
+        //   class: "border-l-2 text-center w-8 px-2 font-normal",
+        // },
         { name: "Năm sinh", class: "border-l-2 text-center px-0 font-normal" },
-        { name: "Địa chỉ", class: "border-l-2 text-center font-normal" },
+        { name: "Địa chỉ", class: "border-l-2 text-center font-normal w-48" },
         {
           name: "Điện thoại",
           class: "border-l-2 text-center px-1 font-normal",
@@ -775,7 +767,7 @@ export default defineComponent({
           name: "Bác sỹ chỉ định",
           class: "border-l-2 text-center font-normal",
         },
-        { name: "Đơn vị gửi mẫu", class: "border-l-2 text-center font-thin" },
+        { name: "Đơn vị gửi mẫu", class: "border-l-2 text-center font-thin uppercase" },
         {
           name: "Ngày nhận mẫu mẫu",
           class: "border-l-2 text-center font-thin",
@@ -784,12 +776,12 @@ export default defineComponent({
         { name: "Image Left", class: "border-l-2 text-center font-normal" },
         { name: "Image Right", class: "border-l-2 text-center font-normal" },
         { name: "Kết quả", class: "border-l-2 text-center font-normal" },
-        { name: "User create", class: "border-l-2 text-center font-normal" },
+        { name: "Ẩn tên ký KQ", class: "border-l-2 text-center font-normal" },
         { name: "Action", class: "text-right border-l-2 font-normal" },
       ];
     },
     addClass() {
-      return "bg-blue-200 text-indigo-700";
+      return "bg-blue-200 text-indigo-700 align-middle";
     },
     bgSave() {
       return "bg-red-900 text-white";
@@ -1028,12 +1020,12 @@ export default defineComponent({
     position: fixed !important;
     bottom: 0;
   }
-}
 .page-break {
   page-break-after: always !important;
 }
 .footer {
-  position: absolute;
+  position: fixed !important;
   bottom: 0px;
+}
 }
 </style>

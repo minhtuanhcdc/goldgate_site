@@ -9,7 +9,7 @@
       <button class="bg-blue-800 cursor-pointer py-2 px-3 rounded-lg text-white"  @click="printDiv" style="position:fixed; z-index:9999">Print Me</button>
         <div class=" mt-0 pt-0" >
       <div class="printMe m-0 p-0" v-if="this.billGroup_1">
-              <PrintviewGroup1
+              <PrintviewTudu
                :getbilltests="this.billGroup_1"
                :testElements="testElements"
                :printCustommers="printCustommers"
@@ -181,7 +181,7 @@ import AppImage from "@/Components/Image";
 import { Link } from "@inertiajs/inertia-vue3";
 import Checkbox from '@/Jetstream/Checkbox';
 
-import PrintviewGroup1 from '@/Pages/PrinviewMulti/FormGroup_1'
+import PrintviewTudu from '@/Pages/PrinviewMulti/FormTudu'
 import PrintviewSaigon from '@/Pages/PrinviewMulti/FormSaigon'
 import PrintviewMekong from '@/Pages/PrinviewMulti/FormMekong'
 import PrintviewVigor from '@/Pages/PrinviewMulti/FormVigor'
@@ -241,7 +241,7 @@ export default defineComponent({
     Link,
     Checkbox,
 
-    PrintviewGroup1,
+    PrintviewTudu,
     PrintviewSaigon,
     PrintviewMekong,
     PrintviewVigor,

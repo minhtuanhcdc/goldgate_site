@@ -28,30 +28,30 @@
         <!---==================------->
         <hr class="mb-2">
       <div class="flex justify-between">
-        <div class="w-96 mx-2">
-           <div class="flex flex-row">
-              <div class="">
-                    <span class="w-full text-right">ĐV gửi mẫu:</span>
-                </div>
-              <div class="flex-1">
-                    <select
-                        name="testgroup"
-                        id="testgroup"
-                        class="block py-0 w-full form-input h-8 rounded-lg text-md bg-yellow-200"
-                        v-model="ousentFill"
-                      >
-                        <option value="">All</option>
-                        <option
-                          v-for="(ous,i) in ousents"
-                          :key="i"
-                          :value="ous.id"
-                        >
-                          {{ous.id}} - {{ ous.name }}
-                        </option>
-                    </select>
-              </div>
-            </div>
+      <div class="w-96 mx-2">
+        <div class="flex flex-row">
+          <div class="">
+            <span class="w-full text-right">ĐV gửi mẫu:</span>
+          </div>
+          <div class="flex-1">
+            <select
+                name="testgroup"
+                id="testgroup"
+                class="block py-0 w-full form-input h-8 rounded-lg text-md bg-yellow-200"
+                v-model="ousentFill"
+              >
+                <option value="">All</option>
+                <option
+                  v-for="(ous,i) in ousents"
+                  :key="i"
+                  :value="ous.id"
+                >
+                  {{ous.id}} - {{ ous.name }}
+                </option>
+            </select>
+          </div>
         </div>
+      </div>
       <div class="mx-2">
         <div class="flex flex-row">
           <div class="flex flex-row">
@@ -80,26 +80,26 @@
         <div class="flex flex-row">
             <div class="flex flex-row w-48">
               <span class="">Mã từ:</span>
-                <div class="flex-1">
-                    <jet-input
-                      id="starthpv"
-                      type="text"
-                      class="h-8 block w-full"
-                      v-model="starthpv"
-                      autocomplete="starthpv"/>
-                </div>
+              <div class="flex-1">
+                <jet-input
+                  id="starthpv"
+                  type="text"
+                  class="h-8 block w-full"
+                  v-model="starthpv"
+                  autocomplete="starthpv"/>
+              </div>
             </div>
         <div class="flex flex-row ml-2 w-48">
             <span>Đến:</span>
             <div class="flex-1">
-            <jet-input
-                id="tohpv"
-                type="text"
-                class= "h-8 block w-full"
-                v-model="tohpv"
-                autocomplete="tohpv"
-            />
-        </div>
+              <jet-input
+                  id="tohpv"
+                  type="text"
+                  class= "h-8 block w-full"
+                  v-model="tohpv"
+                  autocomplete="tohpv"
+              />
+            </div>
         </div>
         </div>
         <div class="flex">
@@ -107,17 +107,17 @@
             <span class="text-blue-800 font-bold">Kết quả HPV:</span>
           </div>
           <div class="2">
-                <select
-                    name="testgroup"
-                    id="testgroup"
-                    class="block py-0 w-full form-input h-8 rounded-lg text-md bg-yellow-200"
-                    v-model="resultHpvFill"
-                  >
-                    <option value="">All</option>
-                    <option value="negative">Âm (-)</option>
-                    <option value="positive">Dương(+)</option>
+            <select
+              name="testgroup"
+              id="testgroup"
+              class="block py-0 w-full form-input h-8 rounded-lg text-md bg-yellow-200"
+              v-model="resultHpvFill"
+              >
+                <option value="">All</option>
+                <option value="negative">Âm (-)</option>
+                <option value="positive">Dương(+)</option>
 
-                </select>
+            </select>
           </div>
         </div>
         <div class="flex">
@@ -132,77 +132,75 @@
       <hr class="mt-2">
       <!---==================------->
       <div class="flex justify-between mt-2 my-1">
-
         <div class=" bg-blue-100">
           <div class=" text-right">
             <div class="flex mb-2 text-right h-8 px-2">
-                        <jet-input
-                          required
-                          id="search"
-                          type="text"
-                          class="mt-1 block w-full h-8 mr-2"
-                          autocomplete="search"
-                          v-model="termSearch"
-                          @keyup="search"
-                        />
-                    <span class="justify-center justify-items-center mt-2 cursor-pointer">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                      </svg>
-                    </span>
-              </div>
+                <jet-input
+                  required
+                  id="search"
+                  type="text"
+                  class="mt-1 block w-full h-8 mr-2"
+                  autocomplete="search"
+                  v-model="termSearch"
+                  @keyup="search"
+                />
+                <span class="justify-center justify-items-center mt-2 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </span>
+            </div>
           </div>
         </div>
         <div class="">
           <div class="p-0 text-right rounded-sm">
-                <div class="flex flex-row justify-end">
-                        <jet-label class="text-right text-bold text-lg pr-1" for="testgroup" value="perPage:" />
-                        <select
-                          name="perPage"
-                          id="perPage"
-                          class="block py-0 w-24 form-input h-8 rounded-lg"
-                          v-model="perPage"
-                          @change="getfilePerpage"
-                        >
-                          <option value="1">1</option>
-                          <option value="5">5</option>
-                          <option value="10">10</option>
-                          <option value="15">15</option>
-                          <option value="20">20</option>
-                          <option value="30">30</option>
-                          <option value="50">50</option>
-                          <option value="100">100</option>
-                          <option value="150">150</option>
-                          <option value="200">200</option>
-                          <option value="250">250</option>
+            <div class="flex flex-row justify-end">
+              <jet-label class="text-right text-bold text-lg pr-1" for="testgroup" value="perPage:" />
+              <select
+                name="perPage"
+                id="perPage"
+                class="block py-0 w-24 form-input h-8 rounded-lg"
+                v-model="perPage"
+                @change="getfilePerpage"
+              >
+                <option value="1">1</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="150">150</option>
+                <option value="200">200</option>
+                <option value="250">250</option>
+              </select>
 
-                        </select>
-
-                </div>
+            </div>
           </div>
         </div>
       </div>
       <!---//////////==================------->
-      <Table :headers="headers" :addClass="addClass" id="exportMe">
-         <tr><td class="text-sm font-bold" colspan="2"><input class="mr-2" type="checkbox" v-model="allSelected" @click="checkAll">CheckAll</td></tr>
-          <tr class="hover:bg-gray-300 " v-for="(bill,i) in billtests.data" :key="i">
-             <td><input type="checkbox" :value="bill.id" v-model="checkPrint"></td>
+        <Table :headers="headers" :addClass="addClass" id="exportMe">
+          <tr><td class="text-sm font-bold" colspan="2"><input class="mr-2" type="checkbox" v-model="allSelected" @click="checkAll">CheckAll</td></tr>
+          <tr class="hover:bg-gray-300 align-middle" v-for="(bill,i) in billtests.data" :key="i">
+            <td><input type="checkbox" :value="bill.id" v-model="checkPrint"></td>
             <td class="border-r-2 text-center">{{i+1}}</td>
             <td class="border-r-2 text-center font-bold">{{bill.hpv_code}}</td>
-             <td class="border-r-2">{{bill.custommer.name}}</td>
-             <td class="border-r-2">
-               <span v-if="bill.custommer.gender == 0">Nữ</span>
-               <span v-else>Nam</span>
-               </td>
-             <td class="border-r-2">{{bill.custommer.birthday}}</td>
-              <td class="border-r-2 text-center">
-                <span v-if="bill.custommer">{{bill.custommer.address}}, </span>
-                <span v-if="bill.ward">{{bill.custommer.ward.name}}, </span>
-                <span v-if="bill.custommer.district">{{bill.custommer.district.name}}, </span>
-                <span v-if="bill.custommer.province">{{bill.custommer.province.title}}. {{bill.custommer.province.name}}</span>
-              </td>
-            <td class="border-r-2" ><span v-if="bill.ousent" class=" text-lg">{{bill.ousent.name}}</span></td>
-             <td class="border-r-2" ><span>{{bill.doctor_indi}}</span></td>
+            <td class="border-r-2 text-sm">{{bill.custommer.name}}</td>
+            <td class="border-r-2">
+                <span v-if="bill.custommer.gender == 0">Nữ</span>
+                <span v-else>Nam</span>
+            </td>
+            <td class="border-r-2">{{bill.custommer.birthday}}</td>
+            <td class="border-r-2 text-center text-sm">
+              <span v-if="bill.custommer">{{bill.custommer.address}}, </span>
+              <span v-if="bill.ward">{{bill.custommer.ward.name}}, </span>
+              <span v-if="bill.custommer.district">{{bill.custommer.district.name}}, </span>
+              <span v-if="bill.custommer.province">{{bill.custommer.province.title}}. {{bill.custommer.province.name}}</span>
+            </td>
+            <td class="border-r-2 text-center" ><span v-if="bill.ousent" class=" text-sm text-center uppercase">{{bill.ousent.name}}</span></td>
+            <td class="border-r-2 text-center" ><span>{{bill.doctor_indi}}</span></td>
             <td class="border-r-2 text-center" >
               <span class="text-center">
                 {{formatDate(bill.date_receive) }}
@@ -212,39 +210,24 @@
               <span class="text-green-800 font-bold" v-for="(tn,i) in bill.testnames" :key="i">
                 {{tn.name}},
               </span>
-              </td>
-
+            </td>
             <td class="border-r-2 text-center">
               <span v-for="(rs,i) in bill.resulthpvs" :key="i">
                 <span v-if="rs.element_id == 56">
                   <span v-if="rs.result >= 0.5" class="text-red-700 font-bold">
-                       {{rs.result}}
+                        {{rs.result}}
                   </span>
                   <span v-else>
-                       {{rs.result}}
+                        {{rs.result}}
                   </span>
-
                 </span>
-
               </span>
             </td>
-            <!-- <td class="border-r-2 text-center">
-              <span v-for="(rs,i) in bill.resulthpvs" :key="i">
-                <span v-if="rs.element_id == 59">
-                  <span v-if="rs.result >= 0.5" class="text-red-700 font-bold">
-                      {{rs.result}}
-                  </span>
-                  <span v-else>
-                      {{rs.result}}
-                  </span>
-                </span>
-              </span>
-            </td> -->
             <td class="border-r-2 text-center">
               <span v-for="(rs,i) in bill.resulthpvs" :key="i">
                 <span v-if="rs.element_id == 57">
                   <span v-if="rs.result >= 0.5" class="text-red-700 font-bold">
-                       {{rs.result}}
+                        {{rs.result}}
                   </span>
                   <span v-else>
                       {{rs.result}}
@@ -256,22 +239,22 @@
               <span v-for="(rs,i) in bill.resulthpvs" :key="i">
                 <span v-if="rs.element_id == 58">
                   <span v-if="rs.result >= 0.5" class="text-red-700 font-bold">
-                       {{rs.result}}
+                        {{rs.result}}
                   </span>
                   <span v-else>
-                       {{rs.result}}
+                        {{rs.result}}
                   </span>
                 </span>
               </span>
             </td>
             <td class="border-r-2">{{bill.userupdate_id}}</td>
-            <td class="border-r-2 w-32">
+            <td class="border-r-2 w-20">
               <div class="flex items-center justify-end space-x-3">
                 <EditBtn v-if="bill.resultHpv"
                   title="Print"
                   class="text-gray-600"
                     @click="printResult(bill)">
-                 <svg class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <svg class="h-8 w-8 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                   </svg>
                 </EditBtn>
@@ -286,37 +269,36 @@
               </div>
             </td>
           </tr>
-      </Table>
-         <div class="mt-4">
+        </Table>
+        <div class="mt-4">
           <div class="flex">
-              <Pagination :links="billtests.links"/>
+            <Pagination :links="billtests.links"/>
           </div>
-          </div>
+        </div>
         <DialogModal :show="showModlPrint" class="mb-0 pb-0 bg-green-700" :bgHeader="editMode ? bgEdit : bgSave" :maxWidth="maxWidth">
-             <template v-slot:content>
-                <div class="text-right w-full flex-row justify-items-between" >
-                    <button class="px-4 rounded-md mb-1 mr-1  bg-gray-800 text-white cursor-pointer text-md py-1 hover:bg-gray-600" type=""
-                       @click="printDiv('printMe')" >Print</button>
-                    <button  @click="closeModalPrint" class="text-white text-md bg-green-500 px-2 py-1 rounded-md hover:bg-green-300">Close</button>
-                </div>
-                <div>
-                  <PrintHPV
-                   :getbilltests="getbilltests"
-                    :testElements="testElements"
-                    :printCustommers="printCustommers"
-                    :printOutsent="printOutsent"
-                    :ouread="ouread"
-                    :printDoctor="printDoctor"
-                    :selectedArray="selectedArray"
-                    :pathThinLeft='pathThinLeft'
-                    :eurolab='eurolab'
-                    :pathLogoOusent='pathLogoOusent'
-                    :pathLogoEurolab="pathLogoEurolab"
-                    :pathImageBackground="pathImageBackground"
-                    :currentDate='currentDate()'/>
-                </div>
-
-            </template>
+          <template v-slot:content>
+            <div class="text-right w-full flex-row justify-items-between" >
+              <button class="px-4 rounded-md mb-1 mr-1  bg-gray-800 text-white cursor-pointer text-md py-1 hover:bg-gray-600" type=""
+                  @click="printDiv()" >Print</button>
+              <button  @click="closeModalPrint" class="text-white text-md bg-green-500 px-2 py-1 rounded-md hover:bg-green-300">Close</button>
+            </div>
+            <div>
+              <PrintHPV
+                :getbilltests="getbilltests"
+                :testElements="testElements"
+                :printCustommers="printCustommers"
+                :printOutsent="printOutsent"
+                :ouread="ouread"
+                :printDoctor="printDoctor"
+                :selectedArray="selectedArray"
+                :pathThinLeft='pathThinLeft'
+                :eurolab='eurolab'
+                :pathLogoOusent='pathLogoOusent'
+                :pathLogoEurolab="pathLogoEurolab"
+                :pathImageBackground="pathImageBackground"
+                :currentDate='currentDate()'/>
+            </div>
+        </template>
         </DialogModal>
       </Card>
     </Container>
@@ -471,7 +453,6 @@ setup() {
         });
         return { form };
     },
-
 computed: {
     breadcrumbs() {
       return [
@@ -505,7 +486,7 @@ computed: {
       ];
     },
     addClass() {
-      return "bg-blue-200 text-indigo-700";
+      return "bg-blue-200 text-indigo-700 align-middle";
       },
       bgSave(){
         return "bg-red-900 text-white";
@@ -514,9 +495,7 @@ computed: {
         return "bg-green-600 text-white";
       },
     },
-  mounted() {
-
-  },
+  mounted() {},
   methods:{
     async checkAll() {
       if (!this.allSelected) {
@@ -551,13 +530,12 @@ computed: {
     if (value) {
         return moment(String(value)).format('DD/MM/YYYY hh:mm')}
     },
-
     currentDate() {
           const current = new Date();
           const date = ' '+`${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
           return date;
         },
-    printDiv(divName){
+    printDiv(){
           window.print();
       },
     closeModalPrint(){

@@ -27,7 +27,7 @@
                   </div>
           </div>
       <!--==============--->
-   <div class=" w-full">
+   <div class=" w-full mb-60">
     <div class="relative">
       <div class="absolute mt-4 flex justify-center w-full opacity-10">
             <img class="w-1/3 -mt-4" :src="pathLogoEurolab + eurolab.background_thin" alt="imagesGG">
@@ -159,8 +159,8 @@
                               :alt="LogoThin"/>
                         </div>
                 </div>
-              <div class="grid grid-cols-3">
-                <div class="col-span-2">
+              <div class="flex justify-between">
+                <div class="flex flex-col">
                   <div class="grid grid-cols-1">
                       <span class="font-bold text-red-800 font-sans-Timenew text-sm underline underline-offset-2">KẾT LUẬN (Conclution):</span>
                         <div  v-for="eg9 in testElements" :key="eg9.id">
@@ -184,19 +184,26 @@
                         </div>
                   </div>
                 </div>
-                <div class="grid grid-cols-1 text-center">
+                <div class="flex flex-col text-center">
                   <span class="font-bold font-sans-Timenew text-xs">Ngày đọc kết quả: {{currentDate}}</span>
-                  <span class="mb-16 font-bold font-sans-Timenew text-sm">BS/KTV đọc kết quả:</span>
-                   <span class="font-bold font-sans-Timenew fontsizeName" v-if="td.doctorread">{{td.doctorread.title}}<span class="ml-1 uppercase fontsizeName"> {{td.doctorread.name}}</span></span>
+                  <span class="font-bold font-sans-Timenew text-sm">BS/KTV đọc kết quả:</span>
+                  <div v-if="td.asign_view" class="py-10"></div>
+                  <div v-else>
+                    <span class="py-2" v-if="td.ousent.asign_view">
+                      <img class="h-14" :src="pathAsign +td.doctorread.asign"/>
+                    </span>
+                    <span class="py-10" v-else></span>
+                    <span class="font-bold font-sans-Timenew text-md " v-if="td.doctorread">{{td.doctorread.title}}<span class="ml-1 uppercase"> {{td.doctorread.name}}</span></span>
+                  </div>
                   <span class="font-bold font-sans-Timenew fontsizeName">KHOA GIẢI PHẨU BỆNH</span>
                   <span class="font-bold font-sans-Timenew fontsizeName">BỆNH VIỆN TỪ DŨ</span>
                 </div>
               </div>
         </div>
       </div>
-       <div class="py-0 mb-0 absolute page-footer" style="">
+       <div class="py-0 mb-0 w-full" style="">
             <img
-              class="max-h-12 w-full"
+              class=""
               :src="pathImageFooter"
               :alt="LogoThin"
               />
@@ -204,50 +211,47 @@
         <div class="page-break"></div>
     </div>
 </template>
-
 <script>
 import { BeakerIcon } from '@heroicons/vue/solid'
 import { CheckIcon } from '@heroicons/vue/solid'
 import moment from 'moment'
 import VueBarcode from '@chenfengyuan/vue-barcode';
 export default {
-    props:{
-       getbilltests:Object,
-        printCustommers:Object,
-        printAddress:'',
-        printOutsent:'',
-        printDoctor:'',
-        selectedArray:'',
-        testElements:'',
-        pathImageLeft:"",
-        pathThinLeft:'',
-        pathThinRight:'',
-        imageThinLeft:'',
-        ketluan:'',
-        currentDate:'',
-        pathLogoEurolab:'',
-        eurolab:'',
+  props:{
+      getbilltests:Object,
+      printCustommers:Object,
+      printAddress:'',
+      printOutsent:'',
+      printDoctor:'',
+      selectedArray:'',
+      testElements:'',
+      pathImageLeft:"",
+      pathThinLeft:'',
+      pathThinRight:'',
+      imageThinLeft:'',
+      ketluan:'',
+      currentDate:'',
+      pathLogoEurolab:'',
+      eurolab:'',
+      pathAsign:'',
 
-    },
-    components:{
-      BeakerIcon,
-      CheckIcon,
-      VueBarcode
-    },
-    data(){
-      return{
-        pathImageTop:'/images/Logo/vigor.jpg',
-        pathImageFooter:'/images/Logo/vigorFooter.jpg',
-      }
-    },
-     methods:{
-
+  },
+  components:{
+    BeakerIcon,
+    CheckIcon,
+    VueBarcode
+  },
+  data(){
+    return{
+      pathImageTop:'/images/Logo/vigor.jpg',
+      pathImageFooter:'/images/Logo/vigorFooter.jpg',
+    }
+  },
+  methods:{
     formatDate(value) {
     if (value) {
-        return moment(String(value)).format('DD/MM/YYYY')}
+      return moment(String(value)).format('DD/MM/YYYY')}
     },
-
-
   }
 }
 </script>

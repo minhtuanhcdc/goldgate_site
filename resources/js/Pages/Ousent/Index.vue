@@ -118,18 +118,21 @@
             :key="i"
             class="hover:bg-blue-300 align-middle"
           >
-            <td class="border-r-2 py-1">{{ ou.id }}</td>
-            <td class="border-r-2 py-1" width="15%">{{ ou.name }}</td>
-            <td class="border-r-2 py-1" width="15%">{{ ou.title }}</td>
-            <td class="border-r-2 py-1" width="15%">{{ ou.address }}</td>
+            <td class="border-r-2 py-1 text-center">{{ ou.id }}</td>
+            <td class="border-r-2 py-1 text-center" width="15%">{{ ou.name }}</td>
+            <td class="border-r-2 py-1 text-center" width="15%">{{ ou.title }}</td>
+            <td class="border-r-2 py-1 text-center" width="15%">{{ ou.address }}</td>
             <td class="border-r-2 text-center font-bold" width="5%">
               {{ ou.form_group }}
             </td>
-            <td class="border-r-2 py-1">{{ ou.phone_contact }}</td>
-            <td class="border-r-2 py-1">{{ ou.person_contact }}</td>
+            <td class="border-r-2 py-1 text-center">{{ ou.phone_contact }}</td>
+            <td class="border-r-2 py-1 text-center">{{ ou.person_contact }}</td>
             <td class="border-r-2">{{ ou.phone }}</td>
-            <td class="border-r-2 py-1">{{ ou.id_ou }}</td>
-            <td class="border-r-2 py-1 w-56">
+            <td class="border-r-2 py-1 text-center">
+              <span v-if="ou.asign_view" class="text-blue-900 font-bold">V</span>
+              <span v-else></span>
+            </td>
+            <td class="border-r-2 py-1 text-center w-56">
               <div class="flex w-full" v-if="ou.logo">
                 <span>
                   <img
@@ -210,7 +213,6 @@
             </td>
           </tr>
         </Table>
-
         <div class="mt-4">
           <div class="flex">
             <Pagination :links="ousents.links" />
@@ -221,10 +223,10 @@
           class="mb-0 pb-0 bg-green-700"
           :bgHeader="editMode ? bgEdit : bgSave"
         >
-          <template v-slot:title>
-            <div class="flex justify-between">
-              <h3 v-show="!editMode">Thêm đơn vị gửi mẫu</h3>
-              <h3 v-show="editMode">Thay đổi thông tin đơn vị</h3>
+          <template v-slot:title class="">
+            <div class="flex justify-between ">
+              <h3 v-show="!editMode" class="text-green-800 font-bold">Thêm đơn vị gửi mẫu</h3>
+              <h3 v-show="editMode" class="text-green-800 font-bold">Thay đổi thông tin đơn vị</h3>
               <button
                 @click.prevent="closeModal"
                 class="
@@ -241,12 +243,12 @@
             </div>
           </template>
           <template v-slot:content class="mt-0">
-            <div class="px-4 pb-0">
+            <div class="px-1 pb-0 bg-blue-800">
               <form
                 class="
                   py-1
-                  px-6
-                  sm:p-1 sm:px-6
+                  px-2
+                  sm:p-1 sm:px-2
                   bg-white
                   overflow-hidden
                   shadow-xl
@@ -254,44 +256,42 @@
                 "
                 @submit.prevent="saveOu(form)"
               >
-                <div class="grid grid-cols-1">
-                  <div class="mt-2">
-                    <jet-label
-                      for="name"
-                      class="text-bold text-lg text-blue-800"
-                      value="Tên đơn vị"
-                    />
-                    <jet-input
-                      required
-                      id="name"
-                      type="text"
-                      class="mt-1 block w-full"
-                      v-model="form.name"
-                      autocomplete="name"
-                    />
-                    <div class="ml-4 text-red-800" v-if="errors.name">
-                      * {{ errors.name }}
-                    </div>
-                  </div>
+              <div class="flex">
+                <jet-label
+                  for="name"
+                  class="text-bold text-lg text-blue-800 w-24"
+                  value="Tên đơn vị: "
+                />
+                <jet-input
+                  required
+                  id="name"
+                  type="text"
+                  class=" h-8 flex-1"
+                  v-model="form.name"
+                  autocomplete="name"
+                />
+                <div class="ml-4 text-red-800" v-if="errors.name">
+                  * {{ errors.name }}
                 </div>
-                <div class="grid grid-cols-1">
-                  <div class="mt-2">
+              </div>
+
+                <div class="flex flex-1 mt-2">
                     <jet-label
                       for="name"
                       class="text-bold text-lg text-blue-800"
-                      value="Hiển thị Title"
+                      value="Tên hiển thị: "
                     />
                     <jet-input
                       id="title"
                       type="text"
-                      class="mt-1 block w-full"
+                      class=" h-8 flex-1"
                       v-model="form.title"
                       autocomplete="name"
                     />
-                  </div>
+
                 </div>
-                <div class="grid grid-cols-1">
-                  <div class="ml-1 mt-2">
+                <div class="flex mt-2">
+                  <div class="flex-1 mr-2">
                     <jet-label
                       for="address"
                       class="text-bold text-lg text-blue-800"
@@ -301,15 +301,13 @@
                       required
                       id="address"
                       type="text"
-                      class="mt-1 block w-full"
+                      class="h-8 w-full"
                       v-model="form.address"
                       autocomplete="address"
                     />
                     <!-- <div class="ml-4 text-red-800" v-if="errors.username"> * {{ errors.username }}</div>  -->
                   </div>
-                </div>
-                <div class="grid grid-cols-1">
-                  <div class="ml-1 mt-2">
+                  <div class="">
                     <jet-label
                       for="form_group"
                       class="text-bold text-lg text-blue-800"
@@ -318,7 +316,7 @@
                     <select
                       name="form_group"
                       id="form_group"
-                      class="block w-full form-input rounded-lg"
+                      class="h-8 w-full form-input rounded-lg py-1"
                       v-model="form.form_group"
                     >
                       <option v-for="(eg, i) in 20" :key="i" :value="i">
@@ -331,7 +329,6 @@
 <!--========================================================================================================================================================-->
                 <div class="grid grid-cols-2">
                    <div class="ml-2 mt-2 border-1 border-gray-700">
-
                   <div class="flex flex-col">
                     <div class="pl-2">
                         <input
@@ -341,31 +338,23 @@
                           />
                         <span class="text-bold text-lg text-blue-800">Asign view</span>
                     </div>
-
                     </div>
                   </div>
 <!--========================================================================================================================================================-->
 <!--========================================================================================================================================================-->
                   <div class="ml-2 mt-2 border-1 border-gray-700">
-
                   <div class="">
-
                    <input type="file" class="hidden" ref="logo" @change="updatePhotoLogo()" />
-
                       <jet-label for="logo" value="Logo" class="text-blue-800"/>
-
                       <!-- Current Profile Photo   @change="updatePhotoPreview"-->
-
                       <div class="mt-2" v-show="!logoPreview">
                         <img :src="pathImage + logoUrl" class="mx-auto h-16" />
                       </div>
-
                       <!-- New Profile Photo Preview -->
                       <div class="mt-2 text-center" v-show="logoPreview">
                         <span class="w-full  justify-center">
                         <img :src="logoPreview" class="mx-auto  h-16" />
                         </span>
-
                       </div>
                       <jet-secondary-button
                         class="mt-2 mr-2 bg-red-400"
@@ -374,12 +363,11 @@
                       >
                         Chọn Logo
                       </jet-secondary-button>
-
                       <jet-input-error :message="errorMessage" class="mt-2" />
                       <span class="cursor-pointer" @click="removeLogo()">Remove Logo</span>
                     </div>
-<!--========================================================================================================================================================-->
                   </div>
+<!--========================================================================================================================================================-->
                 </div>
                 <div class="grid grid-cols-2 mt-2">
                   <div class="ml-2 border-1 border-gray-700">
@@ -455,7 +443,7 @@
                     <jet-input
                       id="person_contact"
                       type="text"
-                      class="mt-1 block w-full"
+                      class="mt-1 h-8 w-full"
                       v-model="form.phone_contact"
                       autocomplete="phone_contact"
                     />
@@ -470,7 +458,7 @@
                     <jet-input
                       id="person_contact"
                       type="text"
-                      class="mt-1 block w-full"
+                      class="mt-1 h-8 w-full"
                       v-model="form.website"
                       autocomplete="person_contact"
                     />
@@ -487,7 +475,7 @@
                     <jet-input
                       id="person_contact"
                       type="text"
-                      class="mt-1 block w-full"
+                      class="mt-1 h-8 w-full"
                       v-model="form.person_contact"
                       autocomplete="person_contact"
                     />
@@ -497,7 +485,7 @@
                     <jet-input
                       id="phone"
                       type="text"
-                      class="mt-1 block w-full"
+                      class="mt-1 h-8 w-full"
                       v-model="form.phone"
                       autocomplete="phone"
                     />
@@ -758,7 +746,7 @@ export default defineComponent({
         { name: "Phone đơn vị", class: "border-l-2 text-center" },
         { name: "Người liên hệ", class: "text-center border-l-2" },
         { name: "Phone ", class: "border-l-2 text-center" },
-        { name: "Mã đơn vị", class: "border-l-2 text-center" },
+        { name: "Hiện chữ ký", class: "border-l-2 text-center" },
 
         { name: "Logo", class: "border-l-2 text-center" },
         { name: "Image Header", class: "border-l-2 text-center" },
@@ -783,7 +771,6 @@ export default defineComponent({
   },
   methods: {
     /*===============================================Imgage==================*/
-
       updatePhotoLogo() {
 
       const reader = new FileReader();
@@ -849,7 +836,6 @@ export default defineComponent({
       this.editMode = false;
     },
     reset() {
-
           this.asignView = null;
           this.logoView = null;
           this.addressView = null;

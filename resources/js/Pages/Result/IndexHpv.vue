@@ -118,10 +118,9 @@
                       <input type="file"
                         class=" px-2 py-0 mt-0 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
                         @change="previewImage" ref="photo" />
-
                     </div>
                     <div class="flex items-center mt-0">
-                      <button class="px-2 py-1 text-white bg-gray-900  rounded">Upload kết quả Hpv</button>
+                      <button class="px-2 py-1 text-white bg-blue-900  rounded">Upload kết quả Hpv</button>
                     </div>
                 </div>
               </form>
@@ -155,23 +154,23 @@
           </div>
         </div>
          <Table :headers="headers" :addClass="addClass" v-if="billtests.data.length>0">
-          <tr class="hover:bg-blue-300" v-for="(bill ,i) in billtests.data" :key="i">
-            <td class="border-r-2 text-center"><input type="checkbox" class="w-3 h-3 cursor-pointer"/></td>
-            <td class="border-r-2 text-center">{{i+1}}</td>
-            <td class="border-r-2 font-bold">{{bill.hpv_code}}</td>
-            <td class="border-r-2">{{bill.custommer.name}}</td>
+          <tr class="hover:bg-blue-300 align-middle" v-for="(bill ,i) in billtests.data" :key="i">
+            <td class="border-r-2 text-center "><input type="checkbox" class="w-3 h-3 cursor-pointer"/></td>
+            <td class="border-r-2 text-center ">{{i+1}}</td>
+            <td class="border-r-2 text-center font-bold">{{bill.hpv_code}}</td>
+            <td class="border-r-2 text-center">{{bill.custommer.name}}</td>
 
-            <td class="border-r-2">{{bill.custommer.birthday}}</td>
-            <td class="border-r-2">{{bill.ousent.name}}</td>
-             <td class="border-r-2">
+            <td class="border-r-2 text-center">{{bill.custommer.birthday}}</td>
+            <td class="border-r-2 text-center">{{bill.ousent.name}}</td>
+             <td class="border-r-2 text-center">
               <span v-for="(tn,i) in bill.testnames" :key="i">
                 {{tn.name}},
               </span>
             </td>
-           <td class="border-r-2" >{{bill.doctor_indi}}</td>
-            <td class="border-r-2">{{formatDate(bill.date_receive)}}</td>
+           <td class="border-r-2 text-center" >{{bill.doctor_indi}}</td>
+            <td class="border-r-2 text-center">{{formatDate(bill.date_receive)}}</td>
 
-            <td class="border-r-2 text-center">
+            <td class="border-r-2 text-center ">
               <span v-for="(rs,i) in bill.resulthpvs" :key="i">
                   <span v-if="(rs.element_id==56)">
                     <span v-if="rs.result>=0.5" class="text-red-700 font-bold text-lg">{{rs.result}}</span>
@@ -187,7 +186,7 @@
                   </span>
               </span>
             </td>
-            <td class="border-r-2 text-center">
+            <td class="border-r-2 text-center ">
               <span v-for="(rs,i) in bill.resulthpvs" :key="i">
                   <span v-if="(rs.element_id==58)">
                     <span v-if="rs.result>=1" class="text-red-700 font-bold text-lg">{{rs.result}}</span>
@@ -243,8 +242,7 @@
               </div>
               </div>
             </td>
-
-            <td class="border-r-2 w-32">
+            <td class="border-r-2">
               <div class="flex items-center justify-end space-x-3">
                 <EditBtn
                 v-show="bill.resultHpv==1"
@@ -281,7 +279,6 @@
               </div>
             </td>
           </tr>
-
         </Table>
         <Table v-else :headers="headers" :addClass="addClass">
           <tr><td colspan="14" class="text-center text-red-600 tesxt-lg ">Không có dữ liệu</td></tr>
@@ -291,7 +288,7 @@
               <Pagination :links="billtests.links"/>
           </div>
         </div>
-          <DialogModal :show="showModal" class="mb-0 pb-0 bg-green-700" :bgHeader="editMode ? bgEdit : bgSave" :maxWidth="maxWidth">
+        <DialogModal :show="showModal" class="mb-0 pb-0 bg-green-700" :bgHeader="editMode ? bgEdit : bgSave" :maxWidth="maxWidth">
             <template v-slot:title >
                <div class="flex justify-between text-blue-900 font-bold border-b-1 border-blue-200">
                 <h3 v-show="!editMode" >Nhập kết quả  </h3>
@@ -373,7 +370,6 @@ import { useForm } from '@inertiajs/inertia-vue3'
 import Pagination from "@/Components/Pagination";
 
 export default defineComponent({
-
   name: "Nhập Kết quả HPV Edit",
   props: {
     errors:'',
@@ -406,7 +402,6 @@ export default defineComponent({
     Pagination
 
   },
-
 data(){
   return{
     resultFill:this.filters.resultFill,
@@ -467,7 +462,6 @@ data(){
        this.getDoctorFill(value)
     },
   },
-
    computed: {
     breadcrumbs() {
       return [
@@ -482,7 +476,7 @@ data(){
         { name: "Select", class:'w-12  text-center' },
         { name: "#", class:'w-12 border-l-2 text-center' },
         { name: "Mã HPV", class:'border-l-2 text-center' },
-        { name: "Tên Bệnh nhân", class:'border-l-2' },
+        { name: "Tên Bệnh nhân", class:'border-l-2 w-56' },
 
         { name: "Năm sinh", class:'border-l-2 text-center' },
         { name: "Đơn vị gửi mẫu", class:'border-l-2 text-center' },
@@ -495,11 +489,11 @@ data(){
         { name: "SCO16", class:'border-l-2 text-center' },
         { name: "SCO18", class:'border-l-2 text-center' },
         { name: "Kết luận", class:'border-l-2 text-center w-72' },
-        { name: "Action", class: "text-right border-l-2" },
+        { name: "Action", class: "text-right border-l-2 w-14" },
       ];
     },
     addClass() {
-      return "bg-gray-300";
+      return "bg-gray-300 align-middle";
       },
       bgSave(){
         return "bg-gray-600 text-white";

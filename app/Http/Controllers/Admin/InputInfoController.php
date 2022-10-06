@@ -213,7 +213,7 @@ class InputInfoController extends Controller
             if(Billtest::where('read_code',$readCode)->first()){
                 $getThinCode = Billtest::where('read_code',$readCode)->orderBy('thinprep_code', 'desc')->first()->thinprep_code;
                 $getThinCode2 = substr($getThinCode,3) + 1;
-                $thin_code_last = $readCode.'-'.+$getThinCode2;
+                $thin_code_last = $readCode.'_'.+$getThinCode2;
             }
             else{
                 $thin_code_last=$readCode.'_'.$two_Year.'000001';

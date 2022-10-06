@@ -148,86 +148,84 @@
         <div></div>
         <div></div>
         <div class=" bg-blue-100">
-              <div class=" text-right">
-                <div class="flex mb-2 text-right h-8 px-2">
-                            <jet-input
-                              required
-                              id="search"
-                              type="text"
-                              class="mt-1 block w-full h-8 mr-2"
-                              autocomplete="search"
-                              v-model="elementSearch"
-                              @keyup="search"
-                            />
-                        <span class="justify-center justify-items-center mt-2 cursor-pointer">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                          </svg>
-                        </span>
-                  </div>
-                </div>
+          <div class=" text-right">
+            <div class="flex mb-2 text-right h-8 px-2">
+              <jet-input
+                required
+                id="search"
+                type="text"
+                class="mt-1 block w-full h-8 mr-2"
+                autocomplete="search"
+                v-model="elementSearch"
+                @keyup="search"
+                />
+                <span class="justify-center justify-items-center mt-2 cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                </span>
+            </div>
+            </div>
           </div>
         <div class="">
          <div class="p-0 text-right rounded-sm">
-                <div class="flex flex-row justify-end">
-                        <jet-label class="text-right text-bold text-lg pr-1" for="testgroup" value="perPage:" />
-                        <select
-                          name="perPage"
-                          id="perPage"
-                          class="block py-0 w-24 form-input h-8 rounded-lg"
-                          v-model="perPage"
-                          @change="getfilePerpage"
-                        >
-                          <option value="1">1</option>
-                          <option value="5">5</option>
-                          <option value="10">10</option>
-                          <option value="15">15</option>
-                          <option value="20">20</option>
-                          <option value="30">30</option>
-                          <option value="50">50</option>
-                          <option value="100">100</option>
-                          <option value="150">150</option>
-                          <option value="200">200</option>
-                          <option value="250">250</option>
-                        </select>
-
-                </div>
-                </div>
-          </div>
+            <div class="flex flex-row justify-end">
+              <jet-label class="text-right text-bold text-lg pr-1" for="testgroup" value="perPage:" />
+              <select
+                name="perPage"
+                id="perPage"
+                class="block py-0 w-24 form-input h-8 rounded-lg"
+                v-model="perPage"
+                @change="getfilePerpage"
+              >
+                <option value="1">1</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="150">150</option>
+                <option value="200">200</option>
+                <option value="250">250</option>
+              </select>
+            </div>
+            </div>
+        </div>
       </div>
       <!---//////////==================------->
     </div>
       <Table :headers="headers" :addClass="addClass" id="exportMe">
          <!-- <tr><td class="text-sm font-bold" colspan="2"><input class="mr-2" type="checkbox" v-model="allSelected" @click="checkAll">CheckAll</td></tr> -->
-          <tr class="hover:bg-gray-300 " v-for="(bill,i) in billtests.data" :key="i">
+          <tr class="hover:bg-gray-300 align-middle" v-for="(bill,i) in billtests.data" :key="i">
              <!-- <td><input type="checkbox" :value="bill.id" v-model="checkPrint"></td> -->
             <td class="border-r-2 text-center">{{i+1}}</td>
-             <td class="border-r-2 text-center font-bold">{{bill.thinprep_code}}</td>
-              <td class="border-r-2 text-center font-bold">{{bill.hpv_code}}</td>
-               <td class="border-r-2" ><span>{{bill.read_code}}</span></td>
-               <td class="border-r-2" ><span>{{bill.sub_read_code}}</span></td>
-             <td class="border-r-2">{{bill.custommer.name}}</td>
-             <td class="border-r-2">
+            <td class="border-r-2 text-center font-bold">{{bill.thinprep_code}}</td>
+            <td class="border-r-2 text-center font-bold">{{bill.hpv_code}}</td>
+            <td class="border-r-2" ><span>{{bill.read_code}}</span></td>
+            <td class="border-r-2" ><span>{{bill.sub_read_code}}</span></td>
+            <td class="border-r-2">{{bill.custommer.name}}</td>
+            <td class="border-r-2">
                <span v-if="bill.custommer.gender==0">Nữ</span>
                <span v-else>Nam</span>
-              </td>
-             <td class="border-r-2">{{bill.custommer.birthday}}</td>
-              <td class="border-r-2 text-center">
-                <span v-if="bill.custommer">{{bill.custommer.address}}, </span>
-                <span v-if="bill.custommer.ward">{{bill.custommer.ward.name}}, </span>
-                 <span v-if="bill.custommer.district">{{bill.custommer.district.name}}, </span>
-                <span v-if="bill.custommer.province">{{bill.custommer.province.title}}. {{bill.custommer.province.name}}</span>
-              </td>
+            </td>
+            <td class="border-r-2">{{bill.custommer.birthday}}</td>
+            <td class="border-r-2 text-center">
+              <span v-if="bill.custommer">{{bill.custommer.address}}, </span>
+              <span v-if="bill.custommer.ward">{{bill.custommer.ward.name}}, </span>
+                <span v-if="bill.custommer.district">{{bill.custommer.district.name}}, </span>
+              <span v-if="bill.custommer.province">{{bill.custommer.province.title}}. {{bill.custommer.province.name}}</span>
+            </td>
             <td class="border-r-2 text-center" v-if="bill.phone!==null">{{bill.custommer.phone}}</td>
             <td class="border-r-2 text-center" v-else></td>
             <td class="border-r-2 text-center" >
               <span class="text-green-800 " v-for="(tn,i) in bill.testnames" :key="i">
                 {{tn.name}},
               </span>
-              </td>
-
+            </td>
              <td class="border-r-2" ><span >{{bill.doctor_indi}}</span></td>
-            <td class="border-r-2" ><span v-if="bill.ousent">{{bill.ousent.name}}</span></td>
+            <td class="border-r-2 text-sm" ><span v-if="bill.ousent">{{bill.ousent.name}}</span></td>
             <td class="border-r-2 text-center" >
               <span class="text-center">
                 {{formatDate(bill.date_receive) }}

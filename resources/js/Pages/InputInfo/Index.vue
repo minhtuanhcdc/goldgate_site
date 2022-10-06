@@ -6,26 +6,7 @@
     <Container id="all">
       <Card>
         <!--====message==================------->
-        <div>
-          <div v-if="$page.props.flash.success || $page.props.flash.failure"
-              class="fixed bottom-4 right-4 flex items-center text-white px-8 py-4 bg-opacity-80"
-              :class="{
-                'bg-green-500':$page.props.flash.success,
-                'bg-red-500':$page.props.flash.failure, }"
-            >
-            <div>
-              {{$page.props.flash.success}}
-            </div>
-            <div>
-              {{$page.props.flash.failure}}
-            </div>
-            <button class="ml-4" @click="hideMessage">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </button>
-            </div>
-        </div>
+
         <!--====/message==================------->
         <div>
           <div class="text-red-700" v-if="errors.hpv_code">
@@ -243,7 +224,7 @@
         <!---//////////==================------->
         <Table :headers="headers" :addClass="addClass" id="exportMe">
           <tr><td class="text-sm font-bold" colspan="2"><input class="mr-2" type="checkbox" v-model="allSelected" @click="checkAll">CheckAll</td></tr>
-            <tr class="hover:bg-gray-300 align-midle" v-for="(bill,i) in billtests.data" :key="i">
+            <tr class="hover:bg-gray-300 align-middle" v-for="(bill,i) in billtests.data" :key="i">
               <td><input type="checkbox" :value="bill.id" v-model="checkSelect"></td>
               <td class="border-r-2 text-center">{{i +1}}</td>
               <td class="border-r-2 text-center font-bold">
@@ -258,7 +239,7 @@
                 <span v-else>Nam</span>
                 </td>
               <td class="border-r-2">{{bill.custommer.birthday}}</td>
-              <td class="border-r-2 text-center">
+              <td class="border-r-2 text-center text-sm">
                 <span v-if="bill.custommer">{{bill.custommer.address}}, </span>
                 <span v-if="bill.custommer.ward">{{bill.custommer.ward.name}}, </span>
                 <span v-if="bill.custommer.district">{{bill.custommer.district.name}}, </span>
@@ -272,7 +253,7 @@
                 </span>
                 </td>
               <td class="border-r-2" ><span >{{bill.doctor_indi}}</span></td>
-              <td class="border-r-2 text-center uppercase" >
+              <td class="border-r-2 text-center uppercase text-sm" >
                     {{bill.ousent.name}}
               </td>
               <td class="border-r-2 text-center" >
@@ -289,9 +270,7 @@
               </td>
               <td class="border-r-2" v-if="bill.usercreate">{{bill.usercreate.name}}</td>
               <td class="border-r-2" v-else>--</td>
-              <td class="border-r-2" v-if="bill.userupdate">{{bill.userupdate.name}}</td>
-              <td class="border-r-2" v-else>--</td>
-              <td class="border-r-2 w-32">
+              <td class="border-r-2 w-20">
                 <div class="flex items-center justify-end space-x-3">
                   <EditBtn
                     title="Edit"
@@ -327,7 +306,26 @@
             <h3 v-show="!editMode">Add Bệnh Nhân </h3>
             <h3 v-show="editMode">Chỉnh sửa thông tin Bệnh nhân</h3>
             <button  @click.prevent="closeModal" class="text-white text-lg bg-green-500 px-4 py-1 rounded-md hover:bg-green-300">Close</button>
+          <div v-if="$page.props.flash.success || $page.props.flash.failure"
+              class="fixed bottom-4 right-4 flex items-center text-white px-8 py-4 bg-opacity-80"
+              :class="{
+                'bg-green-500':$page.props.flash.success,
+                'bg-red-500':$page.props.flash.failure, }"
+            >
+            <div>
+              {{$page.props.flash.success}}
             </div>
+            <div>
+              {{$page.props.flash.failure}}
+            </div>
+            <button class="ml-4" @click="hideMessage">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </button>
+            </div>
+        </div>
+
           </template>
           <template v-slot:content>
             <div class="px-1 pb-0 scrollable" :ref="'aKeyValue'" >
@@ -703,9 +701,9 @@
                                 <span class="text-center name_class text-xs">{{form.name}} - {{form.birthday}}</span>
                                   <p class="">
 
-                                      <vue-barcode class="w-24 h-8 badcode_class" :value="selectThin?selectThin:22000001" :options="{ displayValue: false }"></vue-barcode>
+                                      <vue-barcode class="w-24 h-8 badcode_class" :value="selectThin[1]?selectThin[1]:22000001" :options="{ displayValue: false }"></vue-barcode>
                                   </p>
-                                  <span class="text-center code_class text-xs">{{form.thinprep_code}}</span>
+                                  <span class="text-center code_class text-xs">{{thinprep_code[1]}}</span>
                               </div>
                               <span type="button" class="ml-2 bg-blue-500 px-2 py-1 rounded-md text-white h-8" @click="printThin"> Print Thin</span>
                             </div>
@@ -726,9 +724,9 @@
                                   <div class="flex flex-col  print_class mr-2">
                                     <span class="text-center name_class text-xs font-bold">{{getName}} - {{form.birthday}}</span>
                                         <span class="">
-                                          <vue-barcode class="w-24 h-8 badcode_class" :value="selectThin111?selectThin111:22000001" :options="{ displayValue: false }"></vue-barcode>
+                                          <vue-barcode class="w-24 h-8 badcode_class" :value="selectThin[0]?selectThin[0]:22000001" :options="{ displayValue: false }"></vue-barcode>
                                         </span>
-                                    <span class="text-center code_class text-xs font-bold">{{selectThin111}}</span>
+                                    <span class="text-center code_class text-xs font-bold">{{selectThin[0]}}</span>
                                   </div>
                                   <!-- <div v-else></div> -->
                               </div>
@@ -1016,13 +1014,13 @@ export default defineComponent({
           name: "Điện thoại",
           class: "border-l-2 text-center px-1 font-normal",
         },
-        { name: "Tên xét nghiệm", class: "border-l-2 text-center font-normal" },
+        { name: "Tên xét nghiệm", class: "border-l-2 text-center font-normal w-38" },
 
         {
           name: "Bác sỹ chỉ định",
           class: "border-l-2 text-center font-normal",
         },
-        { name: "Đơn vị gửi mẫu", class: "border-l-2 text-center font-thin" },
+        { name: "Đơn vị gửi mẫu", class: "border-l-2 text-center font-thin w-48" },
         {
           name: "Ngày nhận mẫu mẫu",
           class: "border-l-2 text-center font-thin",
@@ -1030,12 +1028,12 @@ export default defineComponent({
 
         { name: "Kết quả", class: "border-l-2 text-center font-normal" },
         { name: "User create", class: "border-l-2 text-center font-normal" },
-        { name: "User update", class: "border-l-2 text-center font-normal" },
+
         { name: "Action", class: "text-right border-l-2 font-normal" },
       ];
     },
     addClass() {
-      return "bg-blue-200 text-indigo-700";
+      return "bg-blue-200 text-indigo-700 align-middle";
     },
     bgSave() {
       return "bg-red-900 text-white";
@@ -1100,7 +1098,14 @@ export default defineComponent({
         // setTimeout(() =>{
         //     this.$inertia.get(route("inputinfo.index"));
         //   },4000)
-
+       this.form = {
+        name: null,
+        birthday: null,
+        doctor_indi: null,
+        kinhchot: null,
+        phone: "",
+        address: "",
+       }
 
       } catch (error) {
         //console.log("Errors_ hehehehehehehe= ")
