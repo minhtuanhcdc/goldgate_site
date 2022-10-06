@@ -5,6 +5,28 @@
     </template>
     <Container id="all">
       <Card>
+        <!--====message==================------->
+        <div>
+          <div v-if="$page.props.flash.success || $page.props.flash.failure"
+              class="fixed bottom-4 right-4 flex items-center text-white px-8 py-4 bg-opacity-80"
+              :class="{
+                'bg-green-500':$page.props.flash.success,
+                'bg-red-500':$page.props.flash.failure, }"
+            >
+            <div>
+              {{$page.props.flash.success}}
+            </div>
+            <div>
+              {{$page.props.flash.failure}}
+            </div>
+            <button class="ml-4" @click="hideMessage">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </button>
+            </div>
+        </div>
+        <!--====/message==================------->
         <div>
           <div class="text-red-700" v-if="errors.hpv_code">
           <span class="mr-2">Trùng mã HPV:</span><span class="font-bold">{{ code_repeat}}</span>
@@ -23,6 +45,8 @@
           </div>
           </div>
         </div>
+        <!--====view Errors==================------->
+
         <div class="grid grid-cols-1 mb-2">
           <div class="flex flex-1 justify-between">
             <button  class="cursor-pointe bg-blue-600 px-2 py-1 rounded-md hover:bg-blue-800 hover:text-gray-900 h-8 text-white"   @click="addCustommer">+ Add</button>
@@ -219,16 +243,16 @@
         <!---//////////==================------->
         <Table :headers="headers" :addClass="addClass" id="exportMe">
           <tr><td class="text-sm font-bold" colspan="2"><input class="mr-2" type="checkbox" v-model="allSelected" @click="checkAll">CheckAll</td></tr>
-            <tr class="hover:bg-gray-300 " v-for="(bill,i) in billtests.data" :key="i">
+            <tr class="hover:bg-gray-300 align-midle" v-for="(bill,i) in billtests.data" :key="i">
               <td><input type="checkbox" :value="bill.id" v-model="checkSelect"></td>
               <td class="border-r-2 text-center">{{i +1}}</td>
-              <td class="border-r-2 text-center font-bold ">
+              <td class="border-r-2 text-center font-bold">
                   {{bill.thinprep_code}}
                 </td>
                 <td class="border-r-2 text-center font-bold">
                     {{bill.hpv_code}}
                 </td>
-              <td class="border-r-2">{{bill.custommer.name}}</td>
+              <td class="border-r-2 text-midle">{{bill.custommer.name}}</td>
               <td class="border-r-2">
                 <span v-if="bill.custommer.gender==0">Nữ</span>
                 <span v-else>Nam</span>
@@ -248,15 +272,8 @@
                 </span>
                 </td>
               <td class="border-r-2" ><span >{{bill.doctor_indi}}</span></td>
-              <td class="border-r-2 text-center" >
-                <div v-if="bill.ousent">
-                  <span v-if="bill.ousent.id == 34" class="font-bold text-red-700">
+              <td class="border-r-2 text-center uppercase" >
                     {{bill.ousent.name}}
-                  </span>
-                  <span v-if="bill.ousent.id !== 34">
-                    {{bill.ousent.name}}
-                  </span>
-                </div>
               </td>
               <td class="border-r-2 text-center" >
                 <span class="text-center">
@@ -504,6 +521,7 @@
                           <div class="text-bold text-lg text-blue-800 m-0 leading-3 ">Chỉ định XN: <span class="m-0 font-normal text-base font-italic text-gray-400"></span></div>
                           <div class="flex-1">
                             <Multiselect
+                              max=1
                               required
                               class="rounded-sm py-0 h-4"
                               v-model="form.testname_id"
@@ -1056,7 +1074,6 @@ export default defineComponent({
     closeModalPrint(){
       this.showModalPrintCode = false;
     },
-
     saveCustommer(data) {
       var hpv;
       var thin;
@@ -1233,12 +1250,7 @@ export default defineComponent({
         }
       }
       if(bill.testname_id != 2||bill.testname_id != 3){
-        if(bill.thinprep_code){
-          thin_code_update = bill.hpv_code
-        }
-        else{
           thin_code_update = this.selectThin[1]
-        }
       }
       const dataupdate = {
         billtest_id: bill.id,
@@ -1404,6 +1416,10 @@ export default defineComponent({
       const file = e.target.files[0];
       this.url = URL.createObjectURL(file);
     },
+    hideMessage(){
+             this.$page.props.flash.success=""
+             this.$page.props.flash.failure=""
+    }
   },
   created() {
    this.getDistrictFill(1)

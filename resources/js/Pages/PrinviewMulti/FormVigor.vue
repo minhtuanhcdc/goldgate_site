@@ -252,12 +252,3 @@ export default {
 }
 </script>
 
-<style media="print">
-@media print {
- .page-footer {
-    position: fixed;
-    bottom: 10pt;
-    right: 0;
-  }
-}
-</style>

@@ -25,6 +25,7 @@
                 :pathLogoEurolab='pathLogoEurolab'
                 :eurolab='eurolab'
                 :pathLogo='pathLogo'
+                :pathAsign='pathAsign'
               />
       </div>
       <div class="printMe m-0 p-0" v-if="this.billGroup_2">
@@ -45,6 +46,7 @@
                 :pathLogo='pathLogo'
                 :pathLogoEurolab='pathLogoEurolab'
                 :eurolab='eurolab'
+                :pathAsign='pathAsign'
               />
         </div>
       <div class="w-full m-0 p-0" v-if="this.billGroup_3">
@@ -82,8 +84,9 @@
                 :currentDate='currentDate()'
                 :imageThinLeft='imgeLeft'
                 :imageThinRight='imageRight'
-                  :pathLogoEurolab='pathLogoEurolab'
+                :pathLogoEurolab='pathLogoEurolab'
                 :eurolab='eurolab'
+                :pathAsign='pathAsign'
               />
       </div>
       <div class="printMe m-0 p-0" v-if="this.billGroup_5">
@@ -102,8 +105,9 @@
                 :imageThinRight='imageRight'
                 :pathLogo='pathLogo'
                 :readcodes='readcodes'
-                  :pathLogoEurolab='pathLogoEurolab'
+                :pathLogoEurolab='pathLogoEurolab'
                 :eurolab='eurolab'
+                :pathAsign='pathAsign'
               />
       </div>
          <div class="printMe m-0 p-0" v-if="this.billGroup_6">
@@ -123,6 +127,7 @@
                 :pathLogoEurolab='pathLogoEurolab'
                 :eurolab='eurolab'
                  :pathLogo='pathLogo'
+                 :pathAsign='pathAsign'
               />
           </div>
          <div class="printMe m-0 p-0" v-if="this.billGroup_general">
@@ -142,6 +147,7 @@
                 :pathLogoEurolab='pathLogoEurolab'
                 :eurolab='eurolab'
                  :pathLogo='pathLogo'
+                 :pathAsign='pathAsign'
               />
           </div>
         </div>
@@ -191,10 +197,8 @@ import { useForm } from '@inertiajs/inertia-vue3'
 import moment from 'moment'
 
 export default defineComponent({
-
   name: "Danh sách(Report)",
   props: {
-
     eurolab:'',
     billGroup_1:'',
     billGroup_2:'',
@@ -215,8 +219,6 @@ export default defineComponent({
     custommer:"",
     filters:{},
     errors: Object,
-
-
   },
   components: {
     AppLayout,
@@ -375,7 +377,7 @@ data(){
 
   @page{
     size: a4;
-   margin: 10mm 0.5mm 0.1mm 0.1mm !important;
+   margin: 10mm 0.5mm 0.5mm 0.5mm !important;
     /*Chagen print here size: A5; landscape*/
     font-family: 'Times New Roman';
 
