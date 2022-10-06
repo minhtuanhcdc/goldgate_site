@@ -1,0 +1,19 @@
+    * {
+        font-size: 12px;
+        margin: 0;
+        padding: 0px;
+        /*font-family: 'Times New Roman', serif !important;*/
+        /*font-family: 'Times New Roman', DejaVu Sans, ;*/
+        font-family: DejaVu Sans, DejaVuSans-Bold, 'Times New Roman', 'Josefin Sans', sans-serif !important;
+        src: url('{{storage_path("storage/fonts/DejaVuSans-Bold.ttf")}}') format("truetype");
+    }
+    /*@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap);*/
+    
+    @font-face {
+        font-family: DejaVu Sans, 'Roboto-Italic';
+        src: url('storage/public/fonts/Roboto-Italic.ttf') format('truetype');
+    }
+    
+    .typed {
+        font-family: DejaVu Sans, 'Roboto-Italic';
+    }

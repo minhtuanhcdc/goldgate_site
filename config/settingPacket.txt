@@ -1,0 +1,1 @@
+npm install vue jsbarcode @chenfengyuan/vue-barcode

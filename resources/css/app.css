@@ -1,0 +1,43 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+table{
+    width: 100%;
+}
+table thead{
+    /*background-color: violet;*/
+}
+
+table th, 
+table td{
+   
+    border-bottom: solid 1px red;
+}
+table td{
+    border-bottom: thin solid rgba(0,0,0,0.12);
+    padding: 6px;
+}
+table tbody tr:last-child td{
+    border-bottom: transparent;
+}
+table tbody tr:hover{
+    background-color: gray;
+    /*cursor: pointer; group-hover:visible */
+}
+@layer components{
+    .menu_item{
+       @apply p-5 pl-0 inline-block border-b-2 hover:border-yellow-700 group-hover:border-yellow-700 cursor-pointer text-indigo-500 ;
+     }
+     .sub_item{
+         @apply grid grid-cols-1 w-1/2 absolute top-full bg-indigo-500 mt-14 opacity-30 invisible group-hover:opacity-100 
+         group-hover:visible group-hover:mt-0 transition-all;
+     }
+     .items{
+         @apply block p-2 hover:bg-indigo-300 hover:text-red-800 cursor-pointer w-full text-red-800;
+     }
+     .items span{
+         @apply text-white hover:text-red-600 text-base;
+     }
+}
+    

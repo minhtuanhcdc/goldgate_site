@@ -1,0 +1,51 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@inertiajs/inertia": "^0.10.0",
+        "@inertiajs/inertia-vue3": "^0.5.1",
+        "@inertiajs/progress": "^0.2.6",
+        "@tailwindcss/forms": "^0.2.1",
+        "@tailwindcss/typography": "^0.3.0",
+        "@types/jspdf": "^2.0.0",
+        "@vue/compiler-sfc": "^3.0.5",
+        "axios": "^0.21",
+        "css-loader": "^6.7.1",
+        "install": "^0.13.0",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "postcss-import": "^12.0.1",
+        "tailwindcss": "^2.0.1",
+        "vue": "^3.2.37",
+        "vue-loader": "^16.1.2"
+    },
+    "dependencies": {
+        "@chenfengyuan/vue-barcode": "^2.0.0",
+        "@ckeditor/ckeditor5-build-classic": "^30.0.0",
+        "@ckeditor/ckeditor5-vue": "^2.0.1",
+        "@heroicons/vue": "^1.0.6",
+        "@vueform/multiselect": "^2.2.0",
+        "autoprefixer": "10.4.5",
+        "datatables.net-bs4": "^1.11.4",
+        "datatables.net-buttons-bs4": "^2.2.2",
+        "html-to-pdfmake": "^2.3.11",
+        "jquery": "^3.6.0",
+        "jsbarcode": "^3.11.5",
+        "jspdf": "^2.5.1",
+        "jszip": "^3.7.1",
+        "moment": "^2.29.3",
+        "pdfmake": "^0.2.4",
+        "true-case-path": "^2.2.1",
+        "vue-html2canvas": "^0.0.4",
+        "vue-html2pdf": "^1.8.0"
+    }
+}

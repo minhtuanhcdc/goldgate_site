@@ -1,0 +1,10 @@
+1. open terminal: Ctrl + shift + `
+2. searh: 'Ctrl + p'
+3. Go to line : 'Ctrl + G'
+4. Find match : 'Ctrl + D'
+5. Full line : 'shift + end'
+6. Multiple cursor : 'alt +click'
+7. Move line up down : 'alt + arrow up down'
+8. Multiple cursor selection : 'shift + alt + i'
+8. multiple rander : 'ctrl + /'
+

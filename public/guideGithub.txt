@@ -1,0 +1,81 @@
+…or create a new repository on the command line
+
+echo "# goldgate" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/minhtuanhcdc/goldgate.git
+git push -u origin main
+
+
+…or push an existing repository from the command line
+git remote add origin https://github.com/minhtuanhcdc/goldgate.git
+git branch -M main
+git push -u origin main
+
+///===========Update=======
+ github->máy: git pull
+
+ máy ->github: git add .
+    git commit -m "sua fil indexNew tu may"
+    git push
+
+
+==========ERROR dist/cjs.j/Clone..==========
+npm install true-case-path
+npm run dev
+
+
+==============git status=============
+Xem trạng thái file trong thư mục
+==============git init=============
+ tạo repository trong computor
+==============git clone=============
+Lấy từ trên mạng vể
+==============git pull===========
+đồng bộ từ trên mạng về máy
+==============git add và git add .=============
+==============git commmit=============
+==============git push=============
+==============git log=============
+trả về các commmit
+
+=============================== commit file ===============================================
+
+Thu mục đang làm việc                staging area                   commit
+
+index.css
+        git add index.html ------> index.html
+
+                                git commit -m "command?" ----> index.html
+===============================================================================
+
+==============================Up Các commit lên repository Server (github) Project mới=================================================
+git branch -M main
+git remote add origin https://github.com/minhtuanhcdc/goldgate.git
+git push -u origin main
+
+===============================================================================
+
+=================================Git brench==============================================
+ Nhánh làm việc riêng mà không ảnh hưởng đến project chung
+
+    git branch
+
+    tạo thêm branch mới: git checkout -b header-style
+
+    Di chuyển đến branch cần làm việc: |git checkout main|  hay |git checkout header-style|
+
+    Đưa command đã tạo từ branch header-style vào main (đứng trên branch main): git merge header-style
+===============================================================================.
+
+
+=============================Đưa thư mục đang trong staging area về thư mục đang làm việc==================================================
+    git restore --staged tên file hay thư mục
+===============================================================================
+
+====================Restore commit before==========================================================
+ 1. git log: xe lịch sử commit trước đó với mỗi commit có 1 mã commit
+
+ 2. Về commit trước đó: git checkout mã_commit
