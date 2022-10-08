@@ -33,16 +33,7 @@
             <!-- <a :href="route('downloadPDF',checkPrint)" class="bg-green-800 py-1 px-2 rounded-md text-white cursor-pointer h-8" target="blank" >Print PDF <span class="text-xs m-0 ">({{checkPrint?checkPrint.length:0}})</span></a> -->
             <button  class="ml-2 bg-green-600 px-2 py-0 rounded-md float-right cursor-pointer h-8 text-white hover:opacity-60">Export EXCEL<span class="text-xs ml-1">(1)</span></button>
              <button @click="deleteMulte(checkSelect)"  class="ml-2 bg-red-600 px-2 py-0 rounded-md float-right cursor-pointer h-8 text-white hover:opacity-60">Multi Delete<span class="text-xs ml-1">({{checkSelect?checkSelect.length:0}})</span></button>
-            <!-- <div class="ml-4 mb-2 flex bg-red-500 px-4 items-center rounded-lg">
-         <DeleteBtn
-                @click="deleteMulte(checkSelect)"
-                class="py-1 cursor-pointer text-red-700"
-                module-name="123"
-              />
 
-            <span> Xóa({{checkSelect?checkSelect.length:0}})</span>
-
-            </div>  -->
           </div>
           <div class="flex flex-row border-solid border-1 border-gray-300 py-0 bg-green-200 h-8">
             <form @submit.prevent="submitFile">
@@ -634,6 +625,9 @@
                               <input name="myfield" type="radio" v-bind:value="item.sub_read_code"  v-model="form.sub_read_code">
                               <label>{{ item.sub_read_code }}</label>
                               </div>
+                                <div v-show="editMode">
+                                <input  type="checkbox" value="true"  v-model="sub_read_code_null">Bỏ chọn
+                                </div>
                               </div>
 
 
@@ -896,7 +890,7 @@ export default defineComponent({
   },
   data() {
     return {
-
+      sub_read_code_null:false,
       getReadcodes:this.readcodes,
       getValueDistrict:'',
       readcodeSub:'',
@@ -1012,7 +1006,7 @@ export default defineComponent({
     breadcrumbs() {
       return [
         {
-          label: "Danh sách nhập thông tin(Mặc định hiển thị ngày hôm nay và hôm qua",
+          label: "Danh sách nhập thông tin (Mặc định hiển thị ngày hôm nay)",
           class: "text-white",
         },
       ];
@@ -1137,6 +1131,7 @@ export default defineComponent({
 //
     },
     reset() {
+      this.sub_read_code_null=false,
       this.readcodeSub='',
       // this.hpv_code = this.hpv_code_last;
       this.chooseReadCode = null;
@@ -1229,6 +1224,10 @@ export default defineComponent({
         }
       );
     },
+    remodeSubcode(){
+
+this.sub_read_code_null=true;
+    },
     editCustommer(bill) {
       this.form = Object.assign({}, bill);
       //console.log(bilForm);
@@ -1269,7 +1268,11 @@ export default defineComponent({
 
       this.getValueDistrict=this.getValueDistrict
       this.form.testname_id = result;
-      this.asignHide =this.form.asign_hide;
+      //this.asignHide =this.form.asign_hide;
+       if (this.form.asign_hide == 1) this.asignHide = true;
+      else this.asignHide = false;
+
+
       this.editMode = true;
       this.showModal = true;
     },
@@ -1307,6 +1310,7 @@ export default defineComponent({
         date_sent: bill.date_sent,
         read_code: bill.read_code,
         sub_read_code: bill.sub_read_code,
+        sub_read_code_null: this.sub_read_code_null,
         asign_hide: bill.asign_hide,
         para: bill.para,
         kinhchot: bill.kinhchot,
@@ -1321,6 +1325,7 @@ export default defineComponent({
       };
       dataupdate._method = "PUT";
       this.$inertia.post("/dashboard/inputinfo/" + bill.id, dataupdate);
+      this.sub_read_code_null=false;
       this.closeModal();
     },
     currentDate() {

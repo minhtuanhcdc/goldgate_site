@@ -433,18 +433,11 @@ class InputInfoController extends Controller
 
                ]);
         }
-        // if($getBill->hpv_code  !== $request->hpv_code){
-        //     $data=$request->validate([
-        //         'hpv_code'=>[Rule::unique(Billtest::class)],
-        //        ]);
-        // }
-        // $data=$request->validate([
-        //     'title'=>['required','string'],
-        //     'id_category'=>['required',Rule::exists(Category::class, 'id')],
-        //     'image'=> ['required', 'image'],
-        //     'description'=>['required','string'],
-        //     'slug'=>['required', Rule::unique(Article::class)],
-        //    ]);
+
+            $sub_thin_code=$request->sub_read_code_null?null:$request->sub_read_code;
+
+            //dd($sub_thin_code);
+
 
         $userUpdate = Auth()->user()->id;
         $ousentGet = Ousent::where('name', 'like', '%' . request('ousent') . '%')->first();
@@ -462,7 +455,7 @@ class InputInfoController extends Controller
                 'diagnose'=>$request->diagnose,
                 'hpv_code'=>$request->hpv_code,
                 'thinprep_code'=>$request->thinprep_code,
-                'sub_read_code'=>$request->sub_read_code,
+                'sub_read_code'=>$sub_thin_code,
                 'sample_code'=>$request->sample_code,
                 'date_receive'=>$request->date_receive,
                 'date_sent'=>$request->date_sent,
