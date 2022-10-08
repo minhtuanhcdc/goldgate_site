@@ -6,17 +6,17 @@
             <div v-if="td.ousent.header_view == 1" class="w-full">
                 <img  class="h-24 w-full" :src="imageHeaderPath+td.ousent.image_header">
             </div>
-            <div v-else class="grid grid-cols-8 w-full">
-                <div class="m-0 p-0 flex justify-end mb-1 mr-2 col-span-2">
-                    <span v-if="td.ousent.logo_view == 1" class="pr-2">
-                        <img  class="h-20 w-40 object object-contain " :src="logoPath+td.ousent.logo">
+            <div v-else class="flex">
+                <div class="m-0 p-0 flex justify-end">
+                    <span v-if="td.ousent.logo_view == 1" class="flex place-end">
+                        <img  class="h-20 w-40 object-contain object-right " :src="logoPath+td.ousent.logo">
                     </span>
-                    <span v-else class="mr-4"><img class=" w-44" :src="imagePathLogoEro"></span>
+                    <span v-else class=""><img class=" w-44" :src="imagePathLogoEro"></span>
                 </div>
-                <div class="col-span-6" >
+                <div class="flex- pl-4" >
                     <div  v-if="td.ousent.address_view == 1">
-                        <p class="uppercase font-sans-Timenew font-bold text-sm" v-if="td.ousent.title">{{td.ousent.title}}</p>
-                        <p class="uppercase font-sans-Timenew font-bold text-sm" v-else>{{td.ousent.name}}</p>
+                        <p class="uppercase font-sans-Timenew font-bold text-lg" v-if="td.ousent.title">{{td.ousent.title}}</p>
+                        <p class="uppercase font-sans-Timenew font-bold text-lg" v-else>{{td.ousent.name}}</p>
                         <div class="flex">
                             <div class="font-bold font-sans-Timenew text-sm w-14" v-if="td.ousent.address">Địa chỉ: </div>
                             <div class=" text-left ml-0 pl-0 pr-2 font-sans-Timenew w-96 text-sm" v-if="td.ousent">
@@ -53,7 +53,6 @@
                     </div>
 
                 </div>
-
             </div>
         </div>
         <!-- <hr class="mt-1 p-0 h-3 bg-gray-900"> -->
@@ -75,7 +74,6 @@
                 <div class="grid grid-cols-4 font-sans-Timenew text-md  m-0 mt-1 p-0" style="border:none !important">
                     <div class="col-span-2">
                         <div class="flex flex-row">
-
                               <div>
                                 <span class="font-bold mr-2 text-sm">Tên bệnh nhân: </span>
                                 <p class="leading-3 italic text-xs">(Full name)</p>
@@ -83,7 +81,6 @@
                             <div>
                                 <span class="font-bold text-sm"> {{td.custommer.name}} </span>
                             </div>
-
                         </div>
                     </div>
                     <div class="">
@@ -295,7 +292,7 @@
                     </td>
                 </tr>
             </table>
-             <div width="95%">
+             <div class="w-full">
                 <table>
                     <tr class="bg-black"><td class=" text-white font-sans-Timenew font-bold text-center border-1 border-gray-900 py-0" colspan="4">GT HPV 16, 18/45</td></tr>
                     <tr class="bg-gray-300 font-sans-Timenew font-bold py-0 text-sm">
@@ -318,7 +315,7 @@
                     </tr>
                     <tr class=" font-sans-Timenew">
                         <td class="  text-center align-middle font-bold border-1 border-gray-900 py-0 text-sm">
-                                <div v-if="td.resulthpvs.find((x) => x.element_id === '57')">
+                            <div v-if="td.resulthpvs.find((x) => x.element_id === '57')">
                                 <div v-if="td.resulthpvs.find((result) => result.element_id === '57').result >= 1">
                                 <span  class="text-red-700 text-xl"> {{formatPrice(td.resulthpvs.find((result) => result.element_id === '57').result)}}</span>
                                 </div>
@@ -326,11 +323,11 @@
                                 <span  class="text-blue-700 text-xl">{{formatPrice(td.resulthpvs.find((result) => result.element_id === '57').result)}}</span>
                                 </div>
                             </div>
-                                <div v-else>
-                                    {{formatPrice(0)}}
-                                </div>
+                            <div v-else>
+                                {{formatPrice(0)}}
+                            </div>
 
-                            </td>
+                        </td>
                         <td class="  text-center border-1 border-gray-900 py-0">
                             <div class="text-left">
                                 <span class=" mr-2 text-sm">Âm tính nếu <span class="ml-10">&lt;</span> 1.00 </span>
@@ -412,42 +409,59 @@
                 </table>
                 <div  class="pb-0 font-sans-Timenew mb-0 mt-1"><span class="text-red-600  uppercase  underline font-bold text-sm py-0">3. KẾT Luận:</span><span class="text-xs italic">(Conclusion)</span></div>
                 <div v-if="td.resulthpvs.find((x) => x.element_id === '57') || td.resulthpvs.find((x) => x.element_id === '58')">
-                    <table class="font-sans-Timenew" >
-                        <tr class="bg-gray-300 font-sans-Timenew border-1 border-gray-900 text-sm">
-                            <td class=" bg-gray-300 text-center font-bold border-black border-1 py-0" colspan="2">Genotype HPV 16</td>
-                            <td class=" bg-gray-300 text-center font-bold border-black border-1 py-0" colspan="2">Genotype HPV 18/45</td>
-                        </tr>
-                        <tr class=" font-sans-Timenew border-1 border-gray-900 " style="">
-                            <td class="font-bold text-red-600 text-center  border-black border-1 py-0 text-sm" colspan="2" width="" >
-                                <div v-if="td.resulthpvs.find((x) => x.element_id === '57')">
-                                    <div v-if="td.resulthpvs.find((result) => result.element_id === '57').result >= 1">
-                                        <span  class="text-red-700 text-lg">Dương tính (Positive)</span>
+                    <div v-if="((td.resulthpvs.find((x) => x.element_id === '57') && td.resulthpvs.find((x) => x.element_id === '57').result >= 1) || td.resulthpvs.find((x) => x.element_id === '58').result >= 1)
+                     ">
+                         <table class="font-sans-Timenew" >
+                            <tr class="bg-gray-300 font-sans-Timenew border-1 border-gray-900 text-sm">
+                                <td class=" bg-gray-300 text-center font-bold border-black border-1 py-0" colspan="2">Genotype HPV 16</td>
+                                <td class=" bg-gray-300 text-center font-bold border-black border-1 py-0" colspan="2">Genotype HPV 18/45</td>
+                            </tr>
+                            <tr class=" font-sans-Timenew border-1 border-gray-900 " style="">
+                                <td class="font-bold text-red-600 text-center  border-black border-1 py-0 text-sm" colspan="2" width="" >
+                                    <div v-if="td.resulthpvs.find((x) => x.element_id === '57')">
+                                        <div v-if="td.resulthpvs.find((result) => result.element_id === '57').result >= 1">
+                                            <span  class="text-red-700 text-lg">Dương tính (Positive)</span>
+                                        </div>
+                                        <div v-else>
+                                            <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
+                                        </div>
                                     </div>
                                     <div v-else>
                                         <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
                                     </div>
-                                </div>
-                                <div v-else>
-                                    <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
-                                </div>
-                            </td>
-                            <td class="font-bold text-blue-600 text-center  border-black border-1 py-0" colspan="2" >
-                                <div v-if="td.resulthpvs.find((x) => x.element_id === '58')">
-                                    <div v-if="td.resulthpvs.find((result) => result.element_id === '58').result >= 1">
-                                        <span  class="text-red-700 text-lg">Dương tính (Positive)</span>
+                                </td>
+                                <td class="font-bold text-blue-600 text-center  border-black border-1 py-0" colspan="2" >
+                                    <div v-if="td.resulthpvs.find((x) => x.element_id === '58')">
+                                        <div v-if="td.resulthpvs.find((result) => result.element_id === '58').result >= 1">
+                                            <span  class="text-red-700 text-lg">Dương tính (Positive)</span>
+                                        </div>
+                                        <div v-else>
+                                            <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
+                                        </div>
                                     </div>
                                     <div v-else>
                                         <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
                                     </div>
-                                </div>
-                                <div v-else>
-                                    <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
-                                </div>
 
-                            </td>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div v-else>
+                      <table class="font-sans-Timenew" >
+                        <tr class="bg-gray-300 font-sans-Timenew border-1 border-gray-900 py-0 text-sm">
+                            <td class=" bg-gray-300 text-center font-bold border-black border-1 py-0" colspan="2">11 Orther HPV High-Risk</td>
+                            <td class=" bg-gray-300 text-center font-bold border-black border-1  py-0" colspan="2">Genotype HPV 16</td>
+                            <td class=" bg-gray-300 text-center font-bold border-black border-1  py-0" colspan="2">Genotype HPV 18/45</td>
+                        </tr>
+                        <tr class=" font-sans-Timenew border-1 border-gray-900 py-0 text-sm" style="">
+                            <td class="font-bold text-red-600 text-xl text-center  border-black border-1 py-0" colspan="2" width="" >Dương tính (Positive)</td>
+                            <td class="font-bold text-blue-600 text-center  border-black border-1 py-0" colspan="2" width="" >Âm tính (Negative)</td>
+                            <td class="font-bold text-blue-600 text-center  border-black border-1 py-0" colspan="2" >Âm tính (Negative)</td>
                         </tr>
                     </table>
-                </div>
+                    </div>
+                    </div>
                 <div v-else>
                     <table class="font-sans-Timenew" >
                     <tr class="bg-gray-300 font-sans-Timenew border-1 border-gray-900 py-0 text-sm">
@@ -466,59 +480,58 @@
        </div>
        <div v-else >
             <div class="w-1/2">
-                    <table class="font-sans-Timenew ">
-                        <tr class="bg-black border-1 border-black"><td class=" text-white font-sans-Timenew font-bold text-center border-1 border-black py-0" colspan="4">14 HPV high-risk</td></tr>
-                        <tr class="bg-gray-300 font-sans-Timenew font-bold border-1 border-black py-0">
-                            <td class="border-1  border-gray-900 text-blue-700 text-center text-sm py-0" colspan="2">S/CO sample value</td>
-                            <td class="border-1  border-gray-900 text-center text-sm py-0" colspan="2">S/CO analyte</td>
-                        </tr>
-                        <tr class=" font-sans-Timenew border-1">
-                            <td class="  text-center align-middle font-bold border-1  border-gray-900 py-0" colspan="2" width="40%">
-                                <div v-if="td.resulthpvs.find((result) => result.element_id === '56')">
-                                    <span>
-                                        {{formatPrice(td.resulthpvs.find((result) => result.element_id === '56').result)}}
-                                    </span>
+                <table class="font-sans-Timenew ">
+                    <tr class="bg-black border-1 border-black"><td class=" text-white font-sans-Timenew font-bold text-center border-1 border-black py-0" colspan="4">14 HPV high-risk</td></tr>
+                    <tr class="bg-gray-300 font-sans-Timenew font-bold border-1 border-black py-0">
+                        <td class="border-1  border-gray-900 text-blue-700 text-center text-sm py-0" colspan="2">S/CO sample value</td>
+                        <td class="border-1  border-gray-900 text-center text-sm py-0" colspan="2">S/CO analyte</td>
+                    </tr>
+                    <tr class=" font-sans-Timenew border-1">
+                        <td class="  text-center align-middle font-bold border-1  border-gray-900 py-0" colspan="2" width="40%">
+                            <div v-if="td.resulthpvs.find((result) => result.element_id === '56')">
+                                <span>
+                                    {{formatPrice(td.resulthpvs.find((result) => result.element_id === '56').result)}}
+                                </span>
+                            </div>
+                            <div v-else></div>
+                        </td>
+                        <td class="border-1  border-gray-900  text-center py-1" colspan="2" width="60%">
+                            <div class="text-left flex flex-row">
+                                <div>
+                                    <span class=" mr-2 text-sm">Âm tính nếu </span>
+                                    <p class="leading-3"> (Negative)</p>
                                 </div>
-                                <div v-else></div>
-                            </td>
-                            <td class="border-1  border-gray-900  text-center py-1" colspan="2" width="60%">
-                                <div class="text-left flex flex-row">
-                                    <div>
-                                        <span class=" mr-2 text-sm">Âm tính nếu </span>
-                                        <p class="leading-3"> (Negative)</p>
-                                    </div>
 
-                                    <div>
-                                        <span class="ml-5">&lt; 0.5 </span>
-                                    </div>
+                                <div>
+                                    <span class="ml-5">&lt; 0.5 </span>
                                 </div>
-                                <div class="text-left flex flex-row mt-2">
-                                    <div>
-                                        <span class=" mr-2 text-sm">Dương tính nếu </span>
-                                        <p class="leading-3"> (Positive)</p>
-                                    </div>
+                            </div>
+                            <div class="text-left flex flex-row mt-2">
+                                <div>
+                                    <span class=" mr-2 text-sm">Dương tính nếu </span>
+                                    <p class="leading-3"> (Positive)</p>
+                                </div>
+                                <div>
+                                    <span>&ge; 0.5 </span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class=" font-sans-Timenew ">
+                        <td class="border-1 border-gray-900 py-0" width="50%" colspan="2">
+                            <span class="mr-2 text-sm font-bold">Kết quả HPV </span>
+                            <p class="leading-3 italic text-xs">(HPV result)</p>
+                        </td>
+                        <td class=" border-1 border-gray-900 text-center py-0 pb-1" colspan="2">
+                            <div v-if="td.resulthpvs.find((result) => result.element_id === '56')">
+                                <span class=" mr-2 text-sm text-blue-600 font-bold">Âm tính </span>
+                                <p class="leading-3 italic text-xs">(Negative)</p>
+                            </div>
+                            <div v-else></div>
 
-                                    <div>
-                                        <span>&ge; 0.5 </span>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class=" font-sans-Timenew ">
-                            <td class="border-1 border-gray-900 py-0" width="50%" colspan="2">
-                                <span class="mr-2 text-sm font-bold">Kết quả HPV </span>
-                                <p class="leading-3 italic text-xs">(HPV result)</p>
-                            </td>
-                            <td class=" border-1 border-gray-900 text-center py-0 pb-1" colspan="2">
-                                <div v-if="td.resulthpvs.find((result) => result.element_id === '56')">
-                                    <span class=" mr-2 text-sm text-blue-600 font-bold">Âm tính </span>
-                                    <p class="leading-3 italic text-xs">(Negative)</p>
-                                </div>
-                                <div v-else></div>
-
-                            </td>
-                        </tr>
-                    </table>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div>
                 <div  class="pb-0 font-sans-Timenew mb-0"><span class="text-red-600  uppercase  underline font-bold text-sm py-0">3. KẾT Luận:</span><span class="text-md italic">(Conclusion)</span></div>
@@ -546,9 +559,9 @@
                         <p class="leading-3 font-bold" style=" border:none">Trưởng Khoa GPB</p>
                         <span v-if="td.ousent.asign_view" class="text-center flex justify-center" style="border:none">
                             <span v-if="ouread">
-                                <img :src="asignPath+ouread.asign" class="h-16 w-auto">
+                                <img :src="asignPath+ouread.asign" class="h-14 w-auto">
                             </span>
-                            <span v-else></span>
+                            <p v-else class="py-5"></p>
                         </span>
                         <p v-else class=" py-5" style="border:none"></p>
                         <span class="text-xl font-bold" style=" border:none" v-if="ouread"><span class="mr-1">{{ouread.title}}</span><span>{{ouread.name}}</span></span>

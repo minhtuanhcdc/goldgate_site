@@ -72,7 +72,7 @@
               <div v-else></div>
             </td>
             <td class="border-r-2 text-center w-16">
-              <span v-if="or.asign_hpv==1" class="text-xl text-center text-blue-900  ">v</span>
+              <span v-if="or.asign_hpv === '1'" class="text-xl text-center text-blue-900  ">v</span>
               <span v-else></span>
             </td>
             <td class="border-r-2">

@@ -262,6 +262,7 @@ class InputHpvController extends Controller
      */
     public function store(Request $request)
     {
+
         foreach ($request->elment_hpv as $eid=>$value) {
             if($value!==null){
                 Result::insert([

@@ -2185,6 +2185,18 @@ select {
 	-o-object-fit: cover;
 	   object-fit: cover;
 }
+.object-none {
+	-o-object-fit: none;
+	   object-fit: none;
+}
+.object-right-top {
+	-o-object-position: right top;
+	   object-position: right top;
+}
+.object-right {
+	-o-object-position: right;
+	   object-position: right;
+}
 .p-2 {
 	padding: 0.5rem;
 }
@@ -2669,10 +2681,6 @@ select {
 }
 .ring-opacity-5 {
 	--tw-ring-opacity: 0.05;
-}
-.brightness-100 {
-	--tw-brightness: brightness(1);
-	filter: var(--tw-filter);
 }
 .filter {
 	filter: var(--tw-filter);
