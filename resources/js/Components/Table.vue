@@ -1,6 +1,6 @@
 <template class="table-responsive">
 <div class="table-responsive">
-      <table :class="tableClass" class="table">
+      <table :class="tableClass" class="table table-responsive">
             <thead>
                 <tr class="" :class="addClass" >
                     <th class=" z-50" v-for="(header,index) in headers" :key="`header-${index}`" :class="header.class || 'text-left'">

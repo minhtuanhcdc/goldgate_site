@@ -7,12 +7,12 @@
             </div>
             <div v-else class="grid grid-cols-8 mt-0 mb-0 pb-0 align-middle">
                 <div class="col-span-2 text-center " >
-                        <span class="flex justify-end object object-end pr-2" v-if=" getbilltests.ousent['logo_view'] ==1">
-                            <img class="h-20" :src="logoPath+getbilltests.ousent['logo']">
-                        </span>
-                        <span v-else class="flex justify-center object object-end pr-2">
-                             <img class="w-48" :src="imagePathLogoEro">
-                        </span>
+                    <span class="flex justify-end object object-end pr-2" v-if=" getbilltests.ousent['logo_view'] ==1">
+                        <img class="h-20" :src="logoPath+getbilltests.ousent['logo']">
+                    </span>
+                    <span v-else class="flex justify-center object object-end pr-2">
+                            <img class="w-48" :src="imagePathLogoEro">
+                    </span>
                 </div>
                 <div class="col-span-6 py-0 m-0" >
                     <div class="w-full" v-if="getbilltests.ousent['address_view'] == 1">
@@ -577,13 +577,15 @@
                     <p class="italic leading-3 text-lg" style="border:none">Ngày (date): <span>{{currentDate}}</span></p>
                     <p class="leading-3 text-xl font-bold" style=" border:none">Trưởng Khoa GPB</p>
                         <span v-if="getbilltests.ousent['asign_view']" class="text-center">
-                            <span class="flex justify-center">
-                            <img :src="asignPath+ouread.asign" class="h-16 w-auto">
+                            <span class="flex justify-center" v-if="ouread">
+                                <img :src="asignPath+ouread.asign" class="h-16 w-auto">
                             </span>
+                            <span v-else></span>
                         </span>
                         <p v-else class=" py-5" style="border:none"></p>
 
                     <span class="text-xl font-bold" style=" border:none" v-if="ouread"><span class="mr-1">{{ouread.title}}</span><span>{{ouread.name}}</span></span>
+                    <span class="text-xl font-bold" style=" border:none" v-else></span>
                 </td>
             </tr>
         </table>
