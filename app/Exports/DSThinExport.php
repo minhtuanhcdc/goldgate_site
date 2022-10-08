@@ -99,12 +99,23 @@ class DSThinExport implements FromCollection,WithMapping,WithHeadings,WithStyles
         foreach ($billtest->ketqua_thin as $value){
          $array .= $value['name'].'; ';
         }
+        $getAddress='';
+        if(!$billtest->custommer->province)
+        {
+            $getAddress = $billtest->custommer->address;
+        }
+        if($billtest->custommer->province && $billtest->custommer->district){
+            $getAddress = $billtest->custommer->address.''.$billtest->custommer->ward->name.', '.$billtest->custommer->district->name;
+        }
+        if($billtest->custommer->province && $billtest->custommer->district && $billtest->custommer->ward){
+            $getAddress = $billtest->custommer->address.''.$billtest->custommer->ward->name.', '.$billtest->custommer->district->name.', '.$billtest->custommer->province->name;
+        }
         return [
             $billtest->id,
             $billtest->thinprep_code,
             $billtest->custommer->name,
             $billtest->custommer->birthday,
-            $billtest->custommer->address,
+            $getAddress,
             //.', '.$billtest->custommer->ward->name .', '.$billtest->custommer->district->name.', '.$billtest->custommer->province->name,
             $billtest->custommer->phone,
             $billtest->ousent->name,

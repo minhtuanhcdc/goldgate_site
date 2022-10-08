@@ -185,14 +185,18 @@
             <div class="flex flex-col text-center text-xl mb-52">
               <span class="font-bold font-sans-Timenew ">Ngày đọc kết quả: {{currentDate}}</span>
               <span class=" font-bold font-sans-Timenew ">BS/KTV đọc kết quả:</span>
-               <div v-if="getbilltests['asign_view']" ></div>
-              <div v-else>
-                <span class="py-2 flex justify-end" v-if="printOutsent.asign_view">
-                  <img class="h-14" :src="path_asign +doctorread.asign"/>
-                </span>
-                <span class="py-10" v-else></span>
-                <span class="font-bold font-sans-Timenew ">{{doctorread.title }}<span class="ml-2">{{doctorread.name}}</span></span>
-              </div>
+              <div v-if="getbilltests['asign_hide'] == 1" class="py-10" ></div>
+                <div v-else>
+                  <span class="py-2" v-if="printOutsent.asign_view == 1">
+                    <span v-if="doctorread">
+                    <img class="h-14" :src="path_asign +doctorread.asign"/>
+                    </span>
+                    <p v-else class="py-10"></p>
+                  </span>
+                  <p v-else  class="py-10"></p>
+                  <span class="font-bold font-sans-Timenew " v-if="doctorread">{{doctorread.title }}<span class="ml-2">{{doctorread.name}}</span></span>
+                  <span v-else></span>
+                </div>
               <span class="font-bold font-sans-Timenew ">KHOA GIẢI PHẨU BỆNH</span>
               <span class="font-bold font-sans-Timenew">BỆNH VIỆN TỪ DŨ</span>
             </div>

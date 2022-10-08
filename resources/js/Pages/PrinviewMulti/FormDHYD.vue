@@ -184,13 +184,17 @@
       <div class="flex flex-col text-center fontsizeInfo">
         <span class="font-bold font-sans-Timenew ">Ngày đọc kết quả: {{currentDate}}</span>
         <span class=" font-bold font-sans-Timenew fontsizeName">BÁC SĨ ĐỌC KẾT QUẢ</span>
-        <div v-if="td.asign_view" class="py-10"></div>
+        <div v-if="td.asign_hide == 1" class="py-10"></div>
         <div v-else>
-          <span class="py-2" v-if="td.ousent.asign_view">
-            <img class="h-14" :src="pathAsign +td.doctorread.asign"/>
+          <span class="py-2" v-if="td.ousent.asign_view ==1">
+            <span v-if="doctorread">
+              <img class="h-14" :src="pathAsign +td.doctorread.asign"/>
+            </span>
+            <p v-else class="py-10"></p>
           </span>
-          <span class="py-10" v-else></span>
+          <p class="py-10" v-else></p>
           <span class="font-bold font-sans-Timenew text-md " v-if="td.doctorread">{{td.doctorread.title}}<span class="ml-1 uppercase"> {{td.doctorread.name}}</span></span>
+          <span v-else></span>
         </div>
       </div>
     </div>

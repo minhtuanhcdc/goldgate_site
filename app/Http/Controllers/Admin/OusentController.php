@@ -90,7 +90,7 @@ class OusentController extends Controller
                'website'=> $request->website,
                'logo_view'=> $request->logo_view,
                'asign_view'=> $request->asign_view,
-               'asign_hpv'=> $request->asign_view,
+
                'address_view'=> $request->address_view,
                'header_view'=> $request->header_view,
                'footer_view'=> $request->footer_view,

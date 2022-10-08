@@ -62,7 +62,7 @@ class OureadController extends Controller
      */
     public function store(Request $request, UploadFile $uploadeFile)
     {
-        //dd($request->all());
+       // dd($request->all());
         try{
             DB::beginTransaction();
             $data=
@@ -71,6 +71,7 @@ class OureadController extends Controller
                'read_code'=> $request->read_code,
                'sub_read_code'=> $request->sub_read_code,
                'id_parent'=> $request->id_parent,
+               'asign_hpv'=> $request->asign_hpv,
                'title'=> $request->title,
                'phone'=> $request->phone,
                'status'=> $request->status,
@@ -154,5 +155,15 @@ class OureadController extends Controller
        $ouread->deleteImage();
         $ouread->delete();
         return redirect()->back()->with('success','Delete  successfully!');
+    }
+    public function deleteAsignImage($id,UploadFile $uploadeFile ){
+
+        $ouread = Ouread::where('id',$id)->first();
+        $ouread->deleteImage();
+        Ouread::where('id',$id)->update([
+            'asign'=>null,
+
+        ]);
+        return back()->withInput()->with('success','Delete successfully!');
     }
 }

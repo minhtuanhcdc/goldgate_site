@@ -16,6 +16,7 @@ class ExportexcelController extends Controller
 {
    public function exportDS(Request $request){
 
+
     $dateNow=Carbon::now()->format('d-m-Y');
     return Excel::download(new DSExport($request->startDate, $request->endDate, $request->ousentFill, $request->nametestFill,  $request->resultHpvFill), 'DS_TraKQ_Hpv_'.$dateNow.'.xlsx');
     //return (new BillreportExport($request->startDate,$request->endDate,$request->ousentFill))->download('report.xls');
@@ -27,7 +28,7 @@ class ExportexcelController extends Controller
     //return (new BillreportExport($request->startDate,$request->endDate,$request->ousentFill))->download('report.xls');
    }
    public function reportBill(Request $request){
-   //dd($request->nametestFill);
+   //dd($request->ousentFill);
     $dateNow=Carbon::now()->format('d-m-Y');
     return Excel::download(new BillreportExport($request->startDate, $request->endDate, $request->ousentFill, $request->nametestFill, $request->readcodeFill, $request->resultHpvFill), 'Report_'.$dateNow.'.xlsx');
     //return (new BillreportExport($request->startDate,$request->endDate,$request->ousentFill))->download('report.xls');

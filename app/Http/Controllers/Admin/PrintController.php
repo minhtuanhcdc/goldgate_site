@@ -34,15 +34,13 @@ class PrintController extends Controller
         $endDate=$request->endDate;
         $currentDate = Carbon::now()->toDateString();
         $tenDateAgo=Carbon::now()->subDays(10)->toDateString();
-            $query='';
+        $query='';
          if (request('term')) {
             $query = Billtest::query();
             $query->where('thinprep_code', 'like', '%'.request('term').'%');
             }
-
      // Free all==========================================================================
      if(!$ousentFill && !$readcodeFill && !$startDate && !$endDate){
-
         $billtests=Billtest::with(['custommer','doctor','ousent','testnames','imageleft','results','doctorread'])
         ->where('thinprep_code','!=',null)
         ->whereDate('date_receive','>=',$tenDateAgo)
@@ -185,6 +183,14 @@ class PrintController extends Controller
         $billtests=Billtest::with(['custommer','doctor','ousent','testnames','resulthpvs'])
         ->where('hpv_code','!=',null)
         ->where('ousent_id',$ousentFill)
+        ->whereDate('date_receive','>=',$startDate)
+        ->whereDate('date_receive','<=',$endDate)
+        ->orderBy('hpv_code','desc')
+        ->paginate($perpage)->withQueryString();
+    }
+    if(!$ousentFill && $startDate && $endDate && (!$starthpv && !$tohpv)){
+        $billtests=Billtest::with(['custommer','doctor','ousent','testnames','resulthpvs'])
+        ->where('hpv_code','!=',null)
         ->whereDate('date_receive','>=',$startDate)
         ->whereDate('date_receive','<=',$endDate)
         ->orderBy('hpv_code','desc')

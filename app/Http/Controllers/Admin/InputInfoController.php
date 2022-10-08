@@ -273,7 +273,7 @@ class InputInfoController extends Controller
      */
     public function store(Request $request)
     {
-
+        //dd($request->all());
        $request->validate([
         'thinprep_code'=>['nullable','unique:billtests,thinprep_code'],
         'hpv_code'=>['nullable','unique:billtests,hpv_code'],
@@ -282,8 +282,18 @@ class InputInfoController extends Controller
         $userCreate = Auth()->user()->id;
         $dateNow = Carbon::now();
         $dateGet = $request->date_receive?$request->date_receive:$dateNow;
-        $ousentFill = Ousent::where('name', 'like', '%' . request('ousent') . '%')->first();
-       $ousentGet =$ousentFill?$ousentFill->id:1;
+
+        if(request('ousent')){
+            $ousentFill = Ousent::where('name', 'like', '%' . request('ousent') . '%')->first();
+        }
+        else{
+            $ousentFill = Ousent::where('id', 1)->first();
+        }
+        //dd(request('ousent'));
+    //     $ousentFill = Ousent::where('name', 'like', '%' . request('ousent') . '%')->first();
+
+    //    $ousentGet =$ousentFill?$ousentFill->id:1;
+    //    dd($ousentFill);
         try{
             DB::beginTransaction();
             $data= $request->all();
@@ -304,13 +314,14 @@ class InputInfoController extends Controller
             $readCode =   substr ( $request->thinprep_code ,0, 2 );
             $Id_bill=$custommer->billtest()->insertGetId([
                 'custommer_id'=>$custommer->id,
-                'ousent_id'=>$ousentGet,
+                'ousent_id'=>$ousentFill->id,
                 'doctor_id'=>$request->doctor_id,
                 'diagnose'=>$request->diagnose,
                 'hpv_code'=>$request->hpv_code,
                 'thinprep_code'=>$request->thinprep_code,
                 'sample_code'=>$request->sample_code,
                 'date_receive'=>$dateGet,
+                'asign_hide'=>$request->asign_hide,
                 'date_sent'=>$request->date_sent,
                 'para'=>$request->para,
                 'note'=>$request->note,
@@ -457,7 +468,7 @@ class InputInfoController extends Controller
                 'date_sent'=>$request->date_sent,
                 'note'=>$request->note,
                 'para'=>$request->para,
-                'asign_view'=>$request->asign_view,
+                'asign_hide'=>$request->asign_hide,
                 'read_code'=>$readCode,
                 'intra'=>$request->intra,
                 'hormone'=>$request->hormone,
@@ -487,7 +498,7 @@ class InputInfoController extends Controller
     }
     public function updatebill(Request $request, $id)
     {
-            dd('updateBill');
+           // dd('updateBill');
       // id`, `name`, `birthday`, `address`, `gender`, `ousent_id`, `status`, `created_at`, `updated_at
       $userUpdate = Auth()->user()->id;
       try{
@@ -548,13 +559,14 @@ class InputInfoController extends Controller
         return back()->withInput()->with('success','Add  successfully!');
     }
     public function getOuread(Request $request){
+
         $readCode = $request->chooseReadCode;
         $two_Year =  substr(Carbon::now()->year,2);
         if($readCode){
             if(Billtest::where('read_code',$readCode)->first()){
                 $getThinCode = Billtest::where('read_code',$readCode)->orderBy('thinprep_code', 'desc')->first()->thinprep_code;
                 $getThinCode2 = substr($getThinCode,3) + 1;
-                $thin_code_last = $readCode.'-'.+$getThinCode2;
+                $thin_code_last = $readCode.'_'.+$getThinCode2;
             }
             else{
                 $thin_code_last=$readCode.'_'.$two_Year.'000001';

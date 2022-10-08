@@ -285,7 +285,6 @@ data(){
     pathThinRight:'/storage/imageThinRight/',
     pathLogo:'/storage/Image_Ousent/',
     pathAsign:'/storage/Image_Ouread/',
-
     ImageThin:'/images/Logo/Thinprep.jpg',
 
     getOusents:this.ousents,

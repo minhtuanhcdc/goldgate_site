@@ -28,6 +28,7 @@ class SaveOureadRequest extends FormRequest
             'read_code'=>['required','string','unique:oureads'],
             'phone'=>['nullable','tring'],
             'asign'=>['nullable','tring'],
+            'asign_hpv'=>['nullable','integer'],
             'title'=>['nullable','tring'],
 
         ];

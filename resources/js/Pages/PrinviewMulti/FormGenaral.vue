@@ -191,8 +191,19 @@
                               </div>
                               <div class="grid grid-cols-1 text-center">
                                 <span class="font-bold font-sans-Timenew text-md">Ngày đọc kết quả: {{currentDate}}</span>
-                                <span class="mb-16 font-bold font-sans-Timenew text-md" style="margin-bottom:60px">BS/KTV đọc kết quả:</span>
-                                <span class="font-bold font-sans-Timenew fontsizeName" v-if="td.doctorread">{{td.doctorread.title}}<span class="ml-1 uppercase"> {{td.doctorread.name}}</span></span>
+                                <span class="font-bold font-sans-Timenew text-md">BS/KTV đọc kết quả:</span>
+                                 <div v-if="td.asign_hide == 1" class="py-10"></div>
+                                  <div v-else>
+                                    <span class="py-2" v-if="td.ousent.asign_view ==1">
+                                      <span v-if="doctorread">
+                                        <img class="h-14" :src="pathAsign +td.doctorread.asign"/>
+                                      </span>
+                                      <p v-else class="py-10"></p>
+                                    </span>
+                                    <p class="py-10" v-else></p>
+                                    <span class="font-bold font-sans-Timenew text-md " v-if="td.doctorread">{{td.doctorread.title}}<span class="ml-1 uppercase"> {{td.doctorread.name}}</span></span>
+                                    <span v-else></span>
+                                  </div>
                                 <span class="font-bold font-sans-Timenew fontsizeName">KHOA GIẢI PHẨU BỆNH</span>
                                 <span class="font-bold font-sans-Timenew fontsizeName">BỆNH VIỆN TỪ DŨ</span>
                               </div>
@@ -225,6 +236,7 @@ export default {
          eurolab:'',
         pathLogo:'',
       pathLogoEurolab:'',
+      pathAsign:'',
     },
     components:{
       CheckIcon,

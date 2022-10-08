@@ -207,13 +207,17 @@
         <div class="flex flex-col text-center fontsizeBottom">
           <span class="font-bold font-sans-Timenew ">Ngày đọc kết quả: {{currentDate}}</span>
           <span class=" font-bold font-sans-Timenew " style="margin-bottom:2px">Bác sĩ đọc kết quả</span>
-          <div v-if="getbilltests['diagnose']"></div>
+       <div v-if="getbilltests['asign_hide'] == 1" class="py-10"></div>
           <div v-else>
-            <span class="py-2 flex justify-center" v-if="printOutsent.asign_view">
-              <img :src="path_asign +doctorread.asign"/>
+            <span class="py-2" v-if="printOutsent.asign_view == 1">
+              <span v-if="doctorread">
+              <img class="h-14" :src="path_asign +doctorread.asign"/>
+              </span>
+              <p v-else class="py-10"></p>
             </span>
-            <span class="py-10" v-else></span>
-            <span class="font-bold font-sans-Timenew ">{{doctorread.title }}<span class="ml-2">{{doctorread.name}}</span></span>
+            <p v-else  class="py-10"></p>
+            <span class="font-bold font-sans-Timenew " v-if="doctorread">{{doctorread.title }}<span class="ml-2">{{doctorread.name}}</span></span>
+            <span v-else></span>
           </div>
         </div>
       </div>

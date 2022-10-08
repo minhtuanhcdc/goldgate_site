@@ -42,9 +42,19 @@ class BillreportExport implements FromCollection,WithMapping,WithHeadings,WithSt
     {
 
         $array ='';
-
+        $getAddress='';
         foreach ($billtest->ketqua_thin as $value){
          $array .= $value['name'].'; ';
+        };
+        if(!$billtest->custommer->province)
+        {
+            $getAddress = $billtest->custommer->address;
+        }
+        if($billtest->custommer->province && $billtest->custommer->district){
+            $getAddress = $billtest->custommer->address.''.$billtest->custommer->ward->name.', '.$billtest->custommer->district->name;
+        }
+        if($billtest->custommer->province && $billtest->custommer->district && $billtest->custommer->ward){
+            $getAddress = $billtest->custommer->address.''.$billtest->custommer->ward->name.', '.$billtest->custommer->district->name.', '.$billtest->custommer->province->name;
         }
 
 
@@ -57,7 +67,7 @@ class BillreportExport implements FromCollection,WithMapping,WithHeadings,WithSt
 
             $billtest->custommer->name,
             $billtest->custommer->birthday,
-            $billtest->custommer->address.''.$billtest->custommer->ward->name.', '.$billtest->custommer->district->name.', '.$billtest->custommer->province->name,
+            $getAddress,
             $billtest->custommer->phone,
 
             $billtest->ousent->name,
@@ -180,6 +190,7 @@ if($ousentFill && $nametestFill && $readcodeFill && $startDate && $endDate){
     ->get();
 }
 if($ousentFill && $startDate && $endDate && (!$nametestFill && !$readcodeFill) ){
+    dd(123);
     $billtests=Billtest::with(['custommer','doctor','ousent','imageLeft','ketqua_thin','resulthpvs'])
     ->where('ousent_id',$ousentFill)
     ->whereDate('date_receive','>=',$startDate)
@@ -238,7 +249,7 @@ if($readcodeFill  &&  $startDate && $endDate && (!$ousentFill &&!$nametestFill )
     ->get();
 }
 //Date===================================================================================//
-if( $startDate && $endDate && (!$ousentFill&& !$readcodeFill)){
+if( $startDate && $endDate && (!$ousentFill&& !$readcodeFill && !$resultHpvFill)){
     $billtests=Billtest::with(['custommer','doctor','ousent','testnames','imageLeft','ketqua_thin','resulthpvs'])
     ->whereDate('date_receive','>=',$startDate)
     ->whereDate('date_receive','<=',$endDate)

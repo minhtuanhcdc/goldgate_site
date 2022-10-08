@@ -27,30 +27,36 @@
           </div>
         </div>
         <!--====view Errors==================------->
-
-        <div class="grid grid-cols-1 mb-2">
-          <div class="flex flex-1 justify-between">
-            <button  class="cursor-pointe bg-blue-600 px-2 py-1 rounded-md hover:bg-blue-800 hover:text-gray-900 h-8 text-white"   @click="addCustommer">+ Add</button>
-            <div class="flex flex-row">
+        <div class="flex flex-1 justify-between">
+          <button  class="cursor-pointe bg-blue-600 px-2 py-1 rounded-md hover:bg-blue-800 hover:text-gray-900 h-8 text-white"   @click="addCustommer">+ Add</button>
+          <div class="flex flex-row">
             <!-- <a :href="route('downloadPDF',checkPrint)" class="bg-green-800 py-1 px-2 rounded-md text-white cursor-pointer h-8" target="blank" >Print PDF <span class="text-xs m-0 ">({{checkPrint?checkPrint.length:0}})</span></a> -->
-            <button  class="ml-2 bg-green-600 px-2 py-0 rounded-md float-right cursor-pointer h-8 text-white">Export EXCEL<span class="text-xs ml-1">(1)</span></button>
-            <button @click="deleteMulte(checkSelect)"  class="ml-2 bg-red-600 px-2 py-0 rounded-md float-right cursor-pointer h-8 text-white">Multi Delete<span class="text-xs ml-1">({{checkSelect?checkSelect.length:0}})</span></button>
-            </div>
-            <div class="flex flex-row border-solid border-1 border-gray-300 py-0 bg-green-200 h-8">
-              <form @submit.prevent="submitFile">
-                <div class="flex flex-row">
-                    <div>
-                        <input type="file"
-                          class="w-full px-2 py-0 mt-0 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
-                          @change="previewImage" ref="photo"/>
-                    </div>
-                    <div class="flex items-center mt-0">
-                        <button class="px-2 py-1 text-white bg-gray-900 rounded " >Upload</button>
-                    </div>
-                  </div>
-                </form>
+            <button  class="ml-2 bg-green-600 px-2 py-0 rounded-md float-right cursor-pointer h-8 text-white hover:opacity-60">Export EXCEL<span class="text-xs ml-1">(1)</span></button>
+             <button @click="deleteMulte(checkSelect)"  class="ml-2 bg-red-600 px-2 py-0 rounded-md float-right cursor-pointer h-8 text-white hover:opacity-60">Multi Delete<span class="text-xs ml-1">({{checkSelect?checkSelect.length:0}})</span></button>
+            <!-- <div class="ml-4 mb-2 flex bg-red-500 px-4 items-center rounded-lg">
+         <DeleteBtn
+                @click="deleteMulte(checkSelect)"
+                class="py-1 cursor-pointer text-red-700"
+                module-name="123"
+              />
 
-            </div>
+            <span> Xóa({{checkSelect?checkSelect.length:0}})</span>
+
+            </div>  -->
+          </div>
+          <div class="flex flex-row border-solid border-1 border-gray-300 py-0 bg-green-200 h-8">
+            <form @submit.prevent="submitFile">
+              <div class="flex flex-row">
+                  <div>
+                      <input type="file"
+                        class="w-full px-2 py-0 mt-0 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600 hover:opacity-60"
+                        @change="previewImage" ref="photo"/>
+                  </div>
+                  <div class="flex items-center mt-0">
+                      <button class="px-2 py-1 text-white bg-gray-900 rounded hover:opacity-60" >Upload</button>
+                  </div>
+                </div>
+              </form>
           </div>
         </div>
         <!---/////==================------->
@@ -81,30 +87,30 @@
               </div>
             </div>
           </div>
-            <div class="col-span-2  mx-2">
-              <div class="flex flex-grow">
-                <div class="">
-                  <span>Xét nghiệm:</span>
-                </div>
-                <div class="col-span-2 w-52">
-                  <select
-                    name="testgroup"
-                    id="testgroup"
-                    class="block py-0 w-full form-input h-8 rounded-lg text-md"
-                    v-model="nametestFill"
+          <div class="col-span-2  mx-2">
+            <div class="flex flex-grow">
+              <div class="">
+                <span>Xét nghiệm:</span>
+              </div>
+              <div class="col-span-2 w-52">
+                <select
+                  name="testgroup"
+                  id="testgroup"
+                  class="block py-0 w-full form-input h-8 rounded-lg text-md"
+                  v-model="nametestFill"
+                >
+                  <option value="">All</option>
+                  <option
+                    v-for="(nt,i) in nametests.data"
+                    :key="i"
+                    :value="nt.id"
                   >
-                    <option value="">All</option>
-                    <option
-                      v-for="(nt,i) in nametests.data"
-                      :key="i"
-                      :value="nt.id"
-                    >
-                      {{ nt.name }}
-                    </option>
-                  </select>
-                </div>
+                    {{ nt.name }}
+                  </option>
+                </select>
               </div>
             </div>
+          </div>
           <div class="col-span-2  mx-2">
             <div class="flex flex-grow">
               <div class="">
@@ -131,34 +137,34 @@
           </div>
           <div class="col-span-2">
             <div class="flex flex-row">
+              <div class="flex flex-row">
+                <span>Từ:</span>
                 <div class="flex flex-row">
-                  <span>Từ:</span>
-                  <div class="flex flex-row">
-                    <jet-input
-                    id="startDate"
+                  <jet-input
+                  id="startDate"
+                  type="date"
+                  class="h-8 block w-full"
+                  v-model="startDate"
+                  autocomplete="startDate"/>
+                </div>
+              </div>
+              <div class="flex flex-row ml-2">
+                <span>Đến:</span>
+                  <jet-input
+                    id="endDate"
                     type="date"
-                    class="h-8 block w-full"
-                    v-model="startDate"
-                    autocomplete="startDate"/>
-                  </div>
-                </div>
-                <div class="flex flex-row ml-2">
-                  <span>Đến:</span>
-                    <jet-input
-                      id="endDate"
-                      type="date"
-                      class= "h-8 block w-full"
-                      v-model="endDate"
-                      autocomplete="endDate"
-                    />
-                </div>
+                    class= "h-8 block w-full"
+                    v-model="endDate"
+                    autocomplete="endDate"
+                  />
+              </div>
             </div>
           </div>
           <div class="col-span-1 text-right">
-            <button @click="getPageFill" class="px-4 ml-2 py-2 justify-auto text-white font-bold bg-blue-400 rounded-md text-sm h-8">
+            <button @click="getPageFill" class="px-4 ml-2 py-2 justify-auto text-white font-bold bg-blue-400 rounded-md text-sm h-8 hover:opacity-60">
                 Fill
             </button>
-            <button @click="refreshFill" class="px-2 mx-2 py-2 justify-auto text-white font-bold bg-yellow-400 rounded-md text-sm h-8">
+            <button @click="refreshFill" class="px-2 mx-2 py-2 justify-auto text-white font-bold bg-yellow-400 rounded-md text-sm h-8 hover:opacity-60">
                 Refresh
             </button>
           </div>
@@ -167,11 +173,11 @@
         <!---==================------->
         <div class="flex justify-between mt-2 my-1">
           <div>
-          <a :href="route('printCode',checkSelect)" class="ml-4 bg-blue-800 py-1 px-2 rounded-md text-white cursor-pointer h-8" target="blank" >Print Hpv Code <span class="text-xs m-0 ">
+          <a :href="route('printCode',checkSelect)" class="ml-4 bg-blue-800 py-1 px-2 rounded-md text-white cursor-pointer h-8 hover:opacity-60" target="blank" >Print Hpv Code <span class="text-xs m-0 ">
             ({{checkSelect?checkSelect.length:0}})</span></a>
           </div>
           <div>
-          <a :href="route('printThin',checkSelect)" class="ml-4 bg-green-800 py-1 px-2 rounded-md text-white cursor-pointer h-8" target="blank" >Print Thin Code <span class="text-xs m-0 ">
+          <a :href="route('printThin',checkSelect)" class="ml-4 bg-green-800 py-1 px-2 rounded-md text-white cursor-pointer h-8 hover:opacity-60" target="blank" >Print Thin Code <span class="text-xs m-0 ">
             ({{checkSelect?checkSelect.length:0}})</span></a>
           </div>
           <div class="">
@@ -232,6 +238,9 @@
                 </td>
                 <td class="border-r-2 text-center font-bold">
                     {{bill.hpv_code}}
+                </td>
+                <td class="border-r-2 text-center font-bold">
+                    {{bill.sub_read_code}}
                 </td>
               <td class="border-r-2 text-midle">{{bill.custommer.name}}</td>
               <td class="border-r-2">
@@ -296,36 +305,35 @@
         <DialogModal :show="showModal"  class="mb-0 pb-0 bg-green-700" :bgHeader="editMode ? bgEdit : bgSave" :maxWidth="maxWidth">
           <template v-slot:title >
             <div class="flex justify-between text-bold text-xl">
-            <div>
-              <span>
-                <label v-for="veggie in veggies" :key="veggie.id" class="text-lg">
-                        {{veggie.name}}
-                </label>
-              </span>
+              <div>
+                <span>
+                  <label v-for="veggie in veggies" :key="veggie.id" class="text-lg">
+                          {{veggie.name}}
+                  </label>
+                </span>
+              </div>
+              <h3 v-show="!editMode">Add Bệnh Nhân </h3>
+              <h3 v-show="editMode">Chỉnh sửa thông tin Bệnh nhân</h3>
+              <button  @click.prevent="closeModal" class="text-white text-lg bg-green-500 px-4 py-1 rounded-md hover:bg-green-300">Close</button>
+              <div v-if="$page.props.flash.success || $page.props.flash.failure"
+                class="fixed bottom-4 right-4 flex items-center text-white px-8 py-4 bg-opacity-80"
+                :class="{
+                  'bg-green-500':$page.props.flash.success,
+                  'bg-red-500':$page.props.flash.failure, }"
+              >
+              <div>
+                {{$page.props.flash.success}}
+              </div>
+              <div>
+                {{$page.props.flash.failure}}
+              </div>
+              <button class="ml-4" @click="hideMessage">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </button>
+              </div>
             </div>
-            <h3 v-show="!editMode">Add Bệnh Nhân </h3>
-            <h3 v-show="editMode">Chỉnh sửa thông tin Bệnh nhân</h3>
-            <button  @click.prevent="closeModal" class="text-white text-lg bg-green-500 px-4 py-1 rounded-md hover:bg-green-300">Close</button>
-          <div v-if="$page.props.flash.success || $page.props.flash.failure"
-              class="fixed bottom-4 right-4 flex items-center text-white px-8 py-4 bg-opacity-80"
-              :class="{
-                'bg-green-500':$page.props.flash.success,
-                'bg-red-500':$page.props.flash.failure, }"
-            >
-            <div>
-              {{$page.props.flash.success}}
-            </div>
-            <div>
-              {{$page.props.flash.failure}}
-            </div>
-            <button class="ml-4" @click="hideMessage">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </button>
-            </div>
-        </div>
-
           </template>
           <template v-slot:content>
             <div class="px-1 pb-0 scrollable" :ref="'aKeyValue'" >
@@ -344,20 +352,19 @@
                     <div class="ml-4 grid grid-cols-4">
                         <div  class=" col-span-3 mr-2 h-8">
                             <div class="grid grid-cols-4">
-                                <div class="col-span-1 pr-2 h-8">
-                                  <!-- <jet-label for="name" class="text-right pr-1 text-bold text-lg text-blue-800 w-full" value="Tên bệnh nhân (name):" /> -->
-                                  <div class="text-right pr-1 text-bold text-lg text-blue-800 w-full m-0 h-6 leading-3">Tên bệnh nhân <span class=" h-8 m-0 font-normal text-base font-italic text-gray-400">(name)</span></div>
-                                </div>
-                            <div class="col-span-3">
-                              <jet-input
-                              required
-                                id="name"
-                                type="text"
-                                class="mt-1 block w-full h-8"
-                                v-model="form.name"
-                                autocomplete="name"/>
-                            </div>
-
+                              <div class="col-span-1 pr-2 h-8">
+                                <!-- <jet-label for="name" class="text-right pr-1 text-bold text-lg text-blue-800 w-full" value="Tên bệnh nhân (name):" /> -->
+                                <div class="text-right pr-1 text-bold text-lg text-blue-800 w-full m-0 h-6 leading-3">Tên bệnh nhân <span class=" h-8 m-0 font-normal text-base font-italic text-gray-400">(name)</span></div>
+                              </div>
+                              <div class="col-span-3">
+                                <jet-input
+                                required
+                                  id="name"
+                                  type="text"
+                                  class="mt-1 block w-full h-8"
+                                  v-model="form.name"
+                                  autocomplete="name"/>
+                              </div>
                             </div>
                         </div>
                         <div class="">
@@ -433,7 +440,12 @@
                               class="block w-full form-input rounded-lg h-8 py-1"
                               v-model="form.province_id">
                                 <option value="">--</option>
-                              <option v-for="(pce, i) in provinces" :key="i" :value="pce.code">{{pce.name}}</option>
+                              <option v-for="(pce, i) in provinces" :key="i" :value="pce.code">
+                                  <span v-if="pce.code === '79'" class="text-bold">  {{pce.name}}</span>
+                                <span v-else style="color:red">
+                                {{pce.name}}
+                                </span>
+                              </option>
                             </select>
                           </div>
                       </div>
@@ -447,7 +459,9 @@
                               class="block w-full form-input rounded-lg h-8 py-1"
                               v-model="form.district_id">
                               <option value="">--</option>
-                              <option v-for="(dst, i) in getdistricts" :key="i" :value="dst.code">{{dst.name}}</option>
+                              <option v-for="(dst, i) in getdistricts" :key="i" :value="dst.code">
+                                {{dst.name}}
+                              </option>
                             </select>
                           </div>
                       </div>
@@ -460,7 +474,7 @@
                               class="block w-full form-input rounded-lg h-8 py-1"
                               v-model="form.ward_id">
                               <option value="12">--</option>
-                              <option v-for="(wd, i) in getwards" :key="i" :value="wd.code">{{wd.name}})</option>
+                              <option v-for="(wd, i) in getwards" :key="i" :value="wd.code">{{wd.name}}</option>
                             </select>
                           </div>
                       </div>
@@ -611,10 +625,18 @@
                           <div class="flex">
                             <span class="w-48 pl-2 text-blue-500 font-semibold">Mã phụ: </span>
                             <div class=" flex-1">
-                              <template v-for="(rc,i) in readcodeSub" :key="i">
-                                <input class="ml-2" type="radio" :value="rc.sub_read_code" v-model="form.sub_read_code" />
+                              <!-- <template v-for="(rc,i) in readcodeSub" :key="i">
+                                <input class="ml-2" type="radio" :id="rc.id" :value="rc.sub_read_code" v-model="form.sub_read_code" />
                                 <label>{{rc.sub_read_code}}</label>
-                              </template>
+                              </template> -->
+                              <div class="flex justify-start space-x-2">
+                              <div  v-for="item in readcodeSub" :key="item.id" >
+                              <input name="myfield" type="radio" v-bind:value="item.sub_read_code"  v-model="form.sub_read_code">
+                              <label>{{ item.sub_read_code }}</label>
+                              </div>
+                              </div>
+
+
                             </div>
                           </div>
                         </div>
@@ -738,7 +760,7 @@
                           <!--Print Hpv 2x3.8cm--->
                             <div class="flex flex-col  border-l border-blue-800">
                               <span class=" text-bold text-lg text-blue-800">Ẩn tên ký KQ</span>
-                              <input type="checkbox" class="w-4 h-4 m-auto" :checked="asignView" v-model="form.asign_view"/>
+                              <input type="checkbox" class="w-4 h-4 m-auto" :checked="asignHide" v-model="form.asign_hide"/>
                             </div>
                       </div>
                   </div>
@@ -815,6 +837,8 @@ import Label from '../../Jetstream/Label.vue';
  import axios from 'axios';
  import {ref,watch} from "vue";
 
+ import Checkradio from"@/Components/Checkradio";
+
 export default defineComponent({
   name: "Danh sách nhập thông tin",
   props: {
@@ -867,11 +891,13 @@ export default defineComponent({
     VueBarcode,
     PrinterIcon,
     VueHtmlToPaper,
-    Label
+    Label,
+    Checkradio,
   },
   data() {
     return {
-      selectThin111:'',
+
+      getReadcodes:this.readcodes,
       getValueDistrict:'',
       readcodeSub:'',
       allSelected:'',
@@ -973,10 +999,8 @@ export default defineComponent({
       return result ;
     },
     selectThin() {
-
       return [this.selectThin=this.thin_code_last,this.selectThin_edit=this.thin_code_last];
       },
-
     selectHpvCode() {
       //alert(123);
       return this.hpv_code=this.hpv_code_last;
@@ -1000,6 +1024,7 @@ export default defineComponent({
         { name: "#", class: "w-12 text-center" },
         { name: "Mã Thinprep", class: "border-l-2 text-center font-normal" },
         { name: "Mã HPV", class: "border-l-2 text-center font-normal" },
+        { name: "Mã phụ", class: "border-l-2 text-center font-normal" },
         {
           name: "Tên khách hàng",
           class: "border-l-2 text-center w-52 px-2 font-normal",
@@ -1043,8 +1068,7 @@ export default defineComponent({
     },
 
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     provinceHandle(province_id){
        const fillData = this.districts.filter(function (el) {
@@ -1113,14 +1137,14 @@ export default defineComponent({
 //
     },
     reset() {
-      // this.thinprep_code=null;
+      this.readcodeSub='',
       // this.hpv_code = this.hpv_code_last;
-      // this.chooseReadCode = null;
+      this.chooseReadCode = null;
       this.intra= false;
       this.hormone= false;
       this.radiation= false;
       this.preg=false;
-      this.asignView = null;
+      this.asignHide = null;
 
       this.form = {
         sub_read_code:false,
@@ -1180,7 +1204,10 @@ export default defineComponent({
       e.preventDefault();
     },
     deleteMulte(checkDelete) {
-      this.$inertia.post(route("multidelete", checkDelete));
+       if(confirm("Bạn có chắc xóa tất cả ?")){
+         this.$inertia.post(route("multidelete", checkDelete));
+         this.checkSelect=[];
+       }
     },
     formatDate(value) {
       if (value) {
@@ -1231,9 +1258,18 @@ export default defineComponent({
         return a.id;
       });
       this.form.chooseReadCode=this.form.read_code
+
+
+
+      var readcodeSub1 = this.getReadcodes.filter(x=>x.sub_read_code !=null)
+      this.readcodeSub = readcodeSub1.filter(x=>x.read_code ==this.form.read_code)
+      this.form.sub_read_code = this.form.sub_read_code
+
+
+
       this.getValueDistrict=this.getValueDistrict
       this.form.testname_id = result;
-      this.asignView =this.form.asign_view;
+      this.asignHide =this.form.asign_hide;
       this.editMode = true;
       this.showModal = true;
     },
@@ -1270,7 +1306,8 @@ export default defineComponent({
         date_receive: bill.date_receive,
         date_sent: bill.date_sent,
         read_code: bill.read_code,
-        asign_view: bill.asign_view,
+        sub_read_code: bill.sub_read_code,
+        asign_hide: bill.asign_hide,
         para: bill.para,
         kinhchot: bill.kinhchot,
         intra: bill.intra,
@@ -1302,7 +1339,7 @@ export default defineComponent({
       //console.log(fillData);
       this.getdoctors = fillData;
     },
-     getDistrictFill(province) {
+    getDistrictFill(province) {
       // alert(province)
       const fillData = this.districts.filter(function (el) {
         return el.province_id == province;
@@ -1426,11 +1463,11 @@ export default defineComponent({
              this.$page.props.flash.failure=""
     }
   },
-  created() {
-   this.getDistrictFill(1)
-      this.getWardFill(1);
+  // created() {
+  //  this.getDistrictFill(1)
+  //     this.getWardFill(1);
 
-  }
+  // }
 });
 </script>
 <style media="print">

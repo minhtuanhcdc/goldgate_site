@@ -129,9 +129,9 @@ Route::middleware(['auth', 'verified'])
 
     Route::get('/imagethins','ImagethinController@index')->name('imagethins');
 
-
-
     Route::resource('/oureads','OureadController');
+    Route::delete('/deleteAsign/{id}','OureadController@deleteAsignImage')->name('deleteAsign');
+
     Route::resource('/inputhpv','InputHpvController');
 
 

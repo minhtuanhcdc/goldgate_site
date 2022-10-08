@@ -256,39 +256,37 @@
                 "
                 @submit.prevent="saveOu(form)"
               >
-              <div class="flex">
-                <jet-label
-                  for="name"
-                  class="text-bold text-lg text-blue-800 w-24"
-                  value="Tên đơn vị: "
-                />
-                <jet-input
-                  required
-                  id="name"
-                  type="text"
-                  class=" h-8 flex-1"
-                  v-model="form.name"
-                  autocomplete="name"
-                />
-                <div class="ml-4 text-red-800" v-if="errors.name">
-                  * {{ errors.name }}
+                <div class="flex">
+                  <jet-label
+                    for="name"
+                    class="text-bold text-lg text-blue-800 w-24"
+                    value="Tên đơn vị: "
+                  />
+                  <jet-input
+                    required
+                    id="name"
+                    type="text"
+                    class=" h-8 flex-1"
+                    v-model="form.name"
+                    autocomplete="name"
+                  />
+                  <div class="ml-4 text-red-800" v-if="errors.name">
+                    * {{ errors.name }}
+                  </div>
                 </div>
-              </div>
-
                 <div class="flex flex-1 mt-2">
-                    <jet-label
-                      for="name"
-                      class="text-bold text-lg text-blue-800"
-                      value="Tên hiển thị: "
-                    />
-                    <jet-input
-                      id="title"
-                      type="text"
-                      class=" h-8 flex-1"
-                      v-model="form.title"
-                      autocomplete="name"
-                    />
-
+                  <jet-label
+                    for="name"
+                    class="text-bold text-lg text-blue-800"
+                    value="Tên hiển thị: "
+                  />
+                  <jet-input
+                    id="title"
+                    type="text"
+                    class=" h-8 flex-1"
+                    v-model="form.title"
+                    autocomplete="name"
+                  />
                 </div>
                 <div class="flex mt-2">
                   <div class="flex-1 mr-2">
@@ -371,23 +369,18 @@
                 </div>
                 <div class="grid grid-cols-2 mt-2">
                   <div class="ml-2 border-1 border-gray-700">
-
                      <div>
                       <input type="file" class="hidden" ref="header" @change="updatePhotoHeader()" />
-
                       <jet-label for="header" value="Header image" class="text-blue-800"/>
                       <!-- Current Profile Photo   @change="updatePhotoPreview"-->
-
                       <div class="mt-2" v-show="!headerPreview">
                         <img :src="pathHeader + imageHeader" class="h-16 mx-auto" />
                       </div>
-
                       <!-- New Profile Photo Preview -->
                       <div class="mt-2" v-show="headerPreview">
                          <span class="w-full  justify-center">
                         <img :src="headerPreview" class="mx-auto  h-16" />
                         </span>
-
                       </div>
                       <jet-secondary-button
                         class="mt-2 mr-2 bg-red-400"
@@ -401,24 +394,19 @@
                       <span class="cursor-pointer" @click="removeHeader()">Remove header</span>
                     </div>
                   </div>
-                 <div class="ml-2 border-1 border-gray-700">
-
-                      <div>
+                  <div class="ml-2 border-1 border-gray-700">
+                    <div>
                       <input type="file" class="hidden" ref="footer" @change="updatePhotoFooter()" />
-
                       <jet-label for="footer" value="Footer image" class="text-blue-800"/>
                       <!-- Current Profile Photo   @change="updatePhotoPreview"-->
-
                       <div class="mt-2" v-show="!footerPreview">
                         <img :src="pathFooter + imageFooter" class="mx-auto  h-16"/>
                       </div>
-
                       <!-- New Profile Photo Preview -->
                       <div class="mt-2" v-show="footerPreview">
-                          <span class="w-full  justify-center">
-                        <img :src="footerPreview" class="mx-auto  h-16" />
+                        <span class="w-full  justify-center">
+                          <img :src="footerPreview" class="mx-auto  h-16" />
                         </span>
-
                       </div>
                       <jet-secondary-button
                         class="mt-2 mr-2 bg-red-400"
@@ -427,7 +415,6 @@
                       >
                         Chọn Footer
                       </jet-secondary-button>
-
                       <jet-input-error :message="errorMessage" class="mt-2" />
                       <span class="cursor-pointer" @click="removeFooter()">Remove footer</span>
                     </div>
@@ -464,7 +451,6 @@
                     />
                   </div>
                 </div>
-
                 <div class="mt-2 grid grid-cols-2">
                   <div class="mt-2">
                     <jet-label
@@ -529,7 +515,6 @@
                     >
                   </div>
                 </div>
-
                 <div class="mt-2 text-center mb-1">
                   <span
                     class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto"
@@ -676,7 +661,6 @@ export default defineComponent({
       formGroup: "",
       logoView: null,
       asignView: null,
-
       addressView: "",
       headerView: "",
       footerView: "",
@@ -772,15 +756,12 @@ export default defineComponent({
   methods: {
     /*===============================================Imgage==================*/
       updatePhotoLogo() {
-
       const reader = new FileReader();
       // let file = this.$refs.photo.files[0]
-      //   this.url = URL.createObjectURL(file)
-
+      //   this.url = URL.createObjectURL(file
       reader.onload = (e) => {
         this.logoPreview = e.target.result;
         this.form.logo =  this.$refs.logo.files[0];
-
       };
       reader.readAsDataURL(this.$refs.logo.files[0]);
     },
@@ -794,9 +775,8 @@ export default defineComponent({
     updatePhotoHeader() {
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.headerPreview = e.target.result;
-        this.form.image_header =  this.$refs.header.files[0];
-
+      this.headerPreview = e.target.result;
+      this.form.image_header =  this.$refs.header.files[0];
       };
       reader.readAsDataURL(this.$refs.header.files[0]);
     },
@@ -822,10 +802,6 @@ export default defineComponent({
       removeFooter() {
         this.footerPreview = null;
       },
-
-
-
-
     /*===================================================Modal==================*/
     openModal() {
       this.showModal = true;
