@@ -484,73 +484,90 @@
             </table>
             <div  class="pb-0 font-sans-Timenew mb-0 mt-3"><span class="text-red-600  uppercase  underline font-bold text-xl">3. KẾT Luận:</span><span class="text-md italic">(Conclusion)</span></div>
             <div v-if="getbilltests.resulthpvs.find((x) => x.element_id === '57') || getbilltests.resulthpvs.find((x) => x.element_id === '58')">
-                        <table class="font-sans-Timenew" >
-                            <tr class="bg-gray-300 font-sans-Timenew border-1 border-gray-900">
-                                <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">Genotype HPV 16</td>
-                                <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">Genotype HPV 18/45</td>
-                            </tr>
-                            <tr class=" font-sans-Timenew border-1 border-gray-900 " style="">
-                                <td class="font-bold text-red-600 text-center  border-black border-1" colspan="2" width="" >
-                                     <div v-if="getbilltests.resulthpvs.find((x) => x.element_id === '57')">
-                                        <div v-if="getbilltests.resulthpvs.find((result) => result.element_id === '57').result >= 1">
-                                            <span  class="text-red-700 text-lg">Dương tính (Positive)</span>
+                <div v-if="(getbilltests.resulthpvs.find((x) => x.element_id === '57') && getbilltests.resulthpvs.find((x) => x.element_id === '57').result >=1)|| getbilltests.resulthpvs.find((x) => x.element_id === '58').result >=1">
+                    <table class="font-sans-Timenew" >
+                    <tr class="bg-gray-300 font-sans-Timenew border-1 border-gray-900">
+                        <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">Genotype HPV 16</td>
+                        <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">Genotype HPV 18/45</td>
+                    </tr>
+                    <tr class=" font-sans-Timenew border-1 border-gray-900 " style="">
+                        <td class="font-bold text-red-600 text-center  border-black border-1" colspan="2" width="" >
+                                <div v-if="getbilltests.resulthpvs.find((x) => x.element_id === '57')">
+                                <div v-if="getbilltests.resulthpvs.find((result) => result.element_id === '57').result >= 1">
+                                    <span  class="text-red-700 text-lg">Dương tính (Positive)</span>
+                                </div>
+                                <div v-else>
+                                    <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
+                            </div>
+                        </td>
+                        <td class="font-bold text-red-600 text-center  border-black border-1" colspan="2" width="" >
+                                <div v-if="getbilltests.resulthpvs.find((x) => x.element_id === '58')">
+                                <div v-if="getbilltests.resulthpvs.find((result) => result.element_id === '58').result >= 1">
+                                    <span  class="text-red-700 text-lg">Dương tính (Positive)</span>
+                                </div>
+                                <div v-else>
+                                    <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
+                            </div>
+                        </td>
+                        <!-- <td class="font-bold text-blue-600 text-center  border-black border-1" colspan="2" >
+                            <div v-for="(sco18, i) in getbilltests.resulthpvs" :key="i">
+                                <div v-if="sco18.element_id == 58">
+                                    <div v-if="sco18.result != null">
+                                            <div v-if="sco18.result>=1">
+                                        <span  class="text-red-700 text-lg">Dương tính (Positive)</span>
                                         </div>
                                         <div v-else>
                                             <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
                                         </div>
                                     </div>
                                     <div v-else>
-                                        <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
+                                        --
                                     </div>
-                                </td>
-                                <td class="font-bold text-red-600 text-center  border-black border-1" colspan="2" width="" >
-                                     <div v-if="getbilltests.resulthpvs.find((x) => x.element_id === '58')">
-                                        <div v-if="getbilltests.resulthpvs.find((result) => result.element_id === '58').result >= 1">
-                                            <span  class="text-red-700 text-lg">Dương tính (Positive)</span>
-                                        </div>
-                                        <div v-else>
-                                            <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
-                                        </div>
-                                    </div>
-                                    <div v-else>
-                                        <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
-                                    </div>
-                                </td>
-                                <!-- <td class="font-bold text-blue-600 text-center  border-black border-1" colspan="2" >
-                                    <div v-for="(sco18, i) in getbilltests.resulthpvs" :key="i">
-                                        <div v-if="sco18.element_id == 58">
-                                            <div v-if="sco18.result != null">
-                                                 <div v-if="sco18.result>=1">
-                                                <span  class="text-red-700 text-lg">Dương tính (Positive)</span>
-                                                </div>
-                                                <div v-else>
-                                                    <span  class="text-blue-700 text-lg">Âm tính (Negative)</span>
-                                                </div>
-                                            </div>
-                                            <div v-else>
-                                                --
-                                            </div>
 
 
-                                        </div>
-                                    </div>
-                                </td> -->
-                            </tr>
-                        </table>
+                                </div>
+                            </div>
+                        </td> -->
+                    </tr>
+                    </table>
+                </div>
+                <div v-else>
+                    <table class="font-sans-Timenew" >
+                        <tr class="bg-gray-300 font-sans-Timenew border-1 border-gray-900">
+                            <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">11 Orther HPV High-Risk</td>
+                            <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">Genotype HPV 16</td>
+                            <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">Genotype HPV 18/45</td>
+                        </tr>
+                        <tr class=" font-sans-Timenew border-1 border-gray-900 " style="">
+                        <td class="font-bold text-red-600 text-center  border-black border-1" colspan="2" width="" >Dương tính (Positive)</td>
+                            <td class="font-bold text-blue-600 text-center  border-black border-1" colspan="2" width="" >Âm tính (Negative)</td>
+                            <td class="font-bold text-blue-600 text-center  border-black border-1" colspan="2" >Âm tính (Negative)</td>
+                        </tr>
+                    </table>
+                </div>
+
             </div>
             <div v-else>
-                         <table class="font-sans-Timenew" >
-                            <tr class="bg-gray-300 font-sans-Timenew border-1 border-gray-900">
-                                <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">11 Orther HPV High-Risk</td>
-                                <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">Genotype HPV 16</td>
-                                <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">Genotype HPV 18/45</td>
-                            </tr>
-                            <tr class=" font-sans-Timenew border-1 border-gray-900 " style="">
-                            <td class="font-bold text-red-600 text-center  border-black border-1" colspan="2" width="" >Dương tính (Positive)</td>
-                                <td class="font-bold text-blue-600 text-center  border-black border-1" colspan="2" width="" >Âm tính (Negative)</td>
-                                <td class="font-bold text-blue-600 text-center  border-black border-1" colspan="2" >Âm tính (Negative)</td>
-                            </tr>
-                    </table>
+                <table class="font-sans-Timenew" >
+                    <tr class="bg-gray-300 font-sans-Timenew border-1 border-gray-900">
+                        <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">11 Orther HPV High-Risk</td>
+                        <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">Genotype HPV 16</td>
+                        <td class=" bg-gray-300 text-center font-bold border-black border-1 text-lg" colspan="2">Genotype HPV 18/45</td>
+                    </tr>
+                    <tr class=" font-sans-Timenew border-1 border-gray-900 " style="">
+                    <td class="font-bold text-red-600 text-center  border-black border-1" colspan="2" width="" >Dương tính (Positive)</td>
+                        <td class="font-bold text-blue-600 text-center  border-black border-1" colspan="2" width="" >Âm tính (Negative)</td>
+                        <td class="font-bold text-blue-600 text-center  border-black border-1" colspan="2" >Âm tính (Negative)</td>
+                    </tr>
+                </table>
             </div>
        </div>
         <div v-else>

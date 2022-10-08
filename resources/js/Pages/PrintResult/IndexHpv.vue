@@ -1,7 +1,11 @@
 <template>
   <app-layout title="Print HPV">
-    <template #header>
-      <breadcrumb :items="breadcrumbs" />
+    <template #header >
+      <div class="flex justify-between">
+        <breadcrumb :items="breadcrumbs" />
+        <breadcrumb :items="breadcrumbs" />
+        <breadcrumb :items="breadcrumbs" />
+      </div>
     </template>
     <Container>
       <Card>

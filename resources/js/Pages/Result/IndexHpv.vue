@@ -1,8 +1,11 @@
 <template>
   <app-layout title="Nhập KQ HPV">
     <template #header>
-      <breadcrumb :items="breadcrumbs" />
-
+      <div class="flex justify-between">
+        <breadcrumb :items="breadcrumbs" />
+        <breadcrumb :items="breadcrumbs" />
+        <breadcrumb :items="breadcrumbs" />
+      </div>
     </template>
     <Container>
       <Card>
