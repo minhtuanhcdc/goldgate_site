@@ -64,6 +64,8 @@ class BillreportExport implements FromCollection,WithMapping,WithHeadings,WithSt
             $billtest->thinprep_code,
             $billtest->hpv_code,
             $billtest->read_code,
+            $billtest->sub_read_code,
+
 
             $billtest->custommer->name,
             $billtest->custommer->birthday,
@@ -86,7 +88,8 @@ class BillreportExport implements FromCollection,WithMapping,WithHeadings,WithSt
             "#",
             "Mã Thinprep",
             "Mã HPV",
-            "Đơn vị đọc",
+            "Mã chính",
+            "Mã phụ",
 
             "Tên bệnh nhân",
             "Năm sinh",
@@ -190,7 +193,7 @@ if($ousentFill && $nametestFill && $readcodeFill && $startDate && $endDate){
     ->get();
 }
 if($ousentFill && $startDate && $endDate && (!$nametestFill && !$readcodeFill) ){
-    dd(123);
+
     $billtests=Billtest::with(['custommer','doctor','ousent','imageLeft','ketqua_thin','resulthpvs'])
     ->where('ousent_id',$ousentFill)
     ->whereDate('date_receive','>=',$startDate)
@@ -324,7 +327,7 @@ if($resultHpvFill =='negative' && $ousentFill && $startDate && $endDate && (!$na
     {
         return [
 
-            'K' => NumberFormat::FORMAT_DATE_DDMMYYYY
+            'L' => NumberFormat::FORMAT_DATE_DDMMYYYY
 
         ];
     }

@@ -301,7 +301,7 @@ class InputInfoController extends Controller
             $custommer=Custommer::create(
                 [
                     'name'=>$request->name,
-                    'gender'=>$request->gender,
+                    'gender'=>0,
                     'phone'=>$request->phone,
                     'birthday'=>$request->birthday,
                     'address'=>$request->address,
@@ -316,6 +316,7 @@ class InputInfoController extends Controller
                 'custommer_id'=>$custommer->id,
                 'ousent_id'=>$ousentFill->id,
                 'doctor_id'=>$request->doctor_id,
+                'doctor_indi'=>$request->doctor_indi,
                 'diagnose'=>$request->diagnose,
                 'hpv_code'=>$request->hpv_code,
                 'thinprep_code'=>$request->thinprep_code,
